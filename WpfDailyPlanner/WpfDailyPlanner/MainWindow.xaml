@@ -1,0 +1,20 @@
+﻿<Window x:Class="WpfDailyPlanner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDailyPlanner"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Background="Gray">
+
+        <StackPanel >
+            <Label >Login:</Label>
+            <TextBox Name="tb_login" ></TextBox>
+            <Label >Password:</Label>
+            <TextBox Name="tb_password" ></TextBox>
+            <Button Grid.Row="4" Name="btn_signin">Sign in</Button>
+            <Button Grid.Row="5" Name="btn_signup">Sign up</Button>
+        </StackPanel>
+    </Grid>
+</Window>
