@@ -5,42 +5,87 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDailyPlanner"
         mc:Ignorable="d"
-        Title="DailyTask" Height="481.5" Width="800">
-    <Grid Background="Gray">
+        Title="DailyTask" Height="337.5" Width="816.5"
+          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="15"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}">
+    
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-          
+
         </Grid.ColumnDefinitions>
+        <GroupBox Header="Task">
         <StackPanel>
-            <Calendar Name="cl_main" />
-            <Label BorderBrush="Black" BorderThickness="2" Name="lb_today">Today:</Label>
-            <Label>Task Name:</Label>
-            <TextBox Name="tb_taskname"></TextBox>
-            <Label>Description</Label>
-            <TextBox TextWrapping="Wrap"
-                AcceptsReturn="True"
-                VerticalScrollBarVisibility="Visible" Name="tb_taskdescr"></TextBox>
-            <Label>Location:</Label>
-            <TextBox Name="tb_location"></TextBox>
-         
+                <TextBox
+  x:Name="tb_taskname"
+  materialDesign:HintAssist.Hint="Name" />
+                <ComboBox
+  materialDesign:HintAssist.Hint="Group"
+  IsEditable="True"
+  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                   </ComboBox>
+       
+                <TextBox Name="tb_taskdescr"
+    TextWrapping="Wrap"
+    VerticalAlignment="Stretch"
+    AcceptsReturn="True"
+    VerticalScrollBarVisibility="Visible"
+    SpellCheck.IsEnabled="True"
+    materialDesign:HintAssist.Hint="Description">
+                </TextBox>
+                <TextBox
+  x:Name="tb_location"
+  materialDesign:HintAssist.Hint="Location" />
+                <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="0.2*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="0.2*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"  Grid.ColumnSpan="2"   >Start Task</Label>
+                <Label Grid.Row="2"   Grid.ColumnSpan="2"  >End Task</Label>
+                <materialDesign:TimePicker Grid.Row="1"  Name="tp_start" Is24Hours="True" Language="uk" ></materialDesign:TimePicker>
+                <materialDesign:TimePicker  Grid.Row="3"  Name="tp_end" Is24Hours="True" Language="uk" ></materialDesign:TimePicker>
+
+                <DatePicker   Language="uk" Grid.Row="1" Grid.Column="1" Name="dp_start"></DatePicker>
+                <DatePicker   Language="uk" Grid.Row="3" Grid.Column="1" Name="dp_end"></DatePicker>
+            </Grid>
         </StackPanel>
-        <StackPanel Grid.Column="1">
-           <ListBox Name="lb_tasks">
-                <ListBoxItem>qwe</ListBoxItem>
-           </ListBox>
-            <Button Name="btn_add">Add task</Button>
-            <Button Name="btn_delete">Delete task</Button>
-            <Button Name="btn_save">Save</Button>
-        </StackPanel>
-        <GroupBox VerticalAlignment="Bottom">
-            <StackPanel Grid.Column="2">
-            <Label>Select start date</Label>
-                <DatePicker  Name="dp_start"   SelectedDate="{Binding Date, StringFormat='dd/MM/yyyy HH:mm:ss'}"></DatePicker>
-            <Label>Select end date</Label>
-            <DatePicker Name="dp_end"></DatePicker>
-                
-            </StackPanel>
         </GroupBox>
+        <StackPanel Grid.Column="1">
+            <!--<ListBox Name="lb_tasks">
+                <ListBoxItem>qwe</ListBoxItem>
+            </ListBox>-->
+            <Button Name="btn_add" Click="Btn_add_Click">Add task</Button>
+            <Button Name="btn_delete" Click="Btn_delete_Click">Delete task</Button>
+            <Button Name="btn_save" Click="Btn_save_Click">Save</Button>
+
+            <materialDesign:Card
+  Background="{DynamicResource PrimaryHueDarkBrush}"
+  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+  Width="200"
+  Padding="8">
+                <StackPanel Name="st_notes">
+                   
+
+                </StackPanel>
+            </materialDesign:Card>
+
+
+        </StackPanel>
+    
     </Grid>
 </Window>

@@ -5,15 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDailyPlanner"
         mc:Ignorable="d"
-        Title="LoginForm" Height="157.877" Width="401.294">
-    <Grid>
+        Title="Login" Height="245.877" Width="459.294"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <GroupBox Header="Sign in">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.05*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*"></RowDefinition>
+                <RowDefinition Height="0.7*"></RowDefinition>
+                <RowDefinition Height="0.5*" ></RowDefinition>
+                <RowDefinition Height="0.5*" ></RowDefinition>
+
+            </Grid.RowDefinitions>
+
+            <TextBox
+  x:Name="tb_login"
+  materialDesign:HintAssist.Hint="Login" Grid.Row="0" />
+            <PasswordBox Grid.Row="1"
+  x:Name="PasswordBox"
+  materialDesign:HintAssist.Hint="Password" Margin="0,0,0,10" />
+            <Button Grid.Row="2" Name="btn_sign_in" Click="Btn_sign_in_Click">Sign In</Button>
+            <Button Grid.Row="3" Name="btn_sign_up" Click="Btn_sign_up_Click">Sign Up</Button>
+        </Grid>
         <StackPanel>
-            <Label>Login</Label>
-            <TextBox Name="tb_login"></TextBox>
-            <Label>Password</Label>
-            <TextBox Name="tb_password"></TextBox>
-            <Button Name="btn_sign_in" Click="Btn_sign_in_Click">Sign In</Button>
-            <Button Name="btn_sign_up" Click="Btn_sign_up_Click">Sign Up</Button>
+        <materialDesign:PackIcon  Kind="Account"     Margin="0,30,0,20"/>
+        <materialDesign:PackIcon  Kind="Key"         Margin="0,0,0,20"/>
         </StackPanel>
-    </Grid>
+        </Grid>
+    </GroupBox>
 </Window>

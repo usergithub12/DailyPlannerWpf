@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfDailyPlanner", "WpfDailyPlanner\WpfDailyPlanner.csproj", "{E0E81075-FD8A-4E8F-8184-EF30F82FA007}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D0CE2DB2-F01C-44CE-B9A1-29FDCB37D08B} = {D0CE2DB2-F01C-44CE-B9A1-29FDCB37D08B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService", "WcfService\WcfService.csproj", "{D0CE2DB2-F01C-44CE-B9A1-29FDCB37D08B}"
 EndProject

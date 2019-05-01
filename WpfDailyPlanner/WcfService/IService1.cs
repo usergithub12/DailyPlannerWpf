@@ -15,9 +15,9 @@ namespace WcfService
         [OperationContract]
         void GetUser(User user);
         [OperationContract]
-        void GetTask(Task task);
+        void GetTaskToAdd(DailyTaskNotes task);
         [OperationContract]
-        Task[] GetTasks();
+        DailyTaskNotes[] GetTasks();
     }
 
 

@@ -11,19 +11,30 @@ namespace WcfService
 
     public class Service1 : IService1
     {
-        public void GetTask(Task task)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task[] GetTasks()
-        {
-            throw new NotImplementedException();
-        }
-
         public void GetUser(User user)
         {
-            throw new NotImplementedException();
+            using (DailyPlannerDB plannerDB = new DailyPlannerDB())
+            {
+                plannerDB.Users.Add(user);
+                plannerDB.SaveChanges();
+            }
         }
+      
+        public DailyTaskNotes[] GetTasks()
+        {
+            DailyPlannerDB dB = new DailyPlannerDB();
+
+            return dB.Tasks.ToArray();
+        }
+
+        public void GetTaskToAdd(DailyTaskNotes task)
+        {
+            using (DailyPlannerDB dailyPlanner = new DailyPlannerDB())
+            {
+                dailyPlanner.Tasks.Add(task);
+                dailyPlanner.SaveChanges();
+            }
+        }
+
     }
 }

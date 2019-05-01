@@ -7,7 +7,7 @@ using System.Web;
 namespace WcfService
 {
     [DataContract]
-    public class Task
+    public class DailyTaskNotes
     {
         [DataMember]
         public int Id { get; set; }

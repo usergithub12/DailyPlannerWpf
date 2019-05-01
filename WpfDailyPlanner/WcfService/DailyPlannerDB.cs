@@ -22,7 +22,7 @@ namespace WcfService
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Task> Tasks { get; set; }
+        public virtual DbSet<DailyTaskNotes> Tasks { get; set; }
     }
 
     //public class MyEntity

@@ -80,7 +80,7 @@
     </Compile>
     <Compile Include="IService1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Task.cs" />
+    <Compile Include="DailyTaskNotes.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,6 @@ namespace WcfService
         public int Id { get; set; }
         [DataMember]
         public string Name { get; set; }
-        public virtual IEnumerable<Task> Tasks { get; set; }
+        public virtual IEnumerable<DailyTaskNotes> Tasks { get; set; }
     }
 }
