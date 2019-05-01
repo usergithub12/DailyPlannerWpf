@@ -5,28 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDailyPlanner"
         mc:Ignorable="d"
-        Title="DailyTask" Height="450" Width="800">
+        Title="DailyTask" Height="481.5" Width="800">
     <Grid Background="Gray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
+          
         </Grid.ColumnDefinitions>
         <StackPanel>
             <Calendar Name="cl_main" />
-
-            <Label Name="lb_today">Today:</Label>
+            <Label BorderBrush="Black" BorderThickness="2" Name="lb_today">Today:</Label>
             <Label>Task Name:</Label>
             <TextBox Name="tb_taskname"></TextBox>
             <Label>Description</Label>
             <TextBox TextWrapping="Wrap"
                 AcceptsReturn="True"
                 VerticalScrollBarVisibility="Visible" Name="tb_taskdescr"></TextBox>
-
+            <Label>Location:</Label>
+            <TextBox Name="tb_location"></TextBox>
+         
         </StackPanel>
         <StackPanel Grid.Column="1">
+           <ListBox Name="lb_tasks">
+                <ListBoxItem>qwe</ListBoxItem>
+           </ListBox>
             <Button Name="btn_add">Add task</Button>
             <Button Name="btn_delete">Delete task</Button>
             <Button Name="btn_save">Save</Button>
         </StackPanel>
+        <GroupBox VerticalAlignment="Bottom">
+            <StackPanel Grid.Column="2">
+            <Label>Select start date</Label>
+                <DatePicker  Name="dp_start"   SelectedDate="{Binding Date, StringFormat='dd/MM/yyyy HH:mm:ss'}"></DatePicker>
+            <Label>Select end date</Label>
+            <DatePicker Name="dp_end"></DatePicker>
+                
+            </StackPanel>
+        </GroupBox>
     </Grid>
 </Window>

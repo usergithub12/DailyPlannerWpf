@@ -1,0 +1,19 @@
+﻿<Window x:Class="WpfDailyPlanner.LoginForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDailyPlanner"
+        mc:Ignorable="d"
+        Title="LoginForm" Height="157.877" Width="401.294">
+    <Grid>
+        <StackPanel>
+            <Label>Login</Label>
+            <TextBox Name="tb_login"></TextBox>
+            <Label>Password</Label>
+            <TextBox Name="tb_password"></TextBox>
+            <Button Name="btn_sign_in" Click="Btn_sign_in_Click">Sign In</Button>
+            <Button Name="btn_sign_up" Click="Btn_sign_up_Click">Sign Up</Button>
+        </StackPanel>
+    </Grid>
+</Window>
