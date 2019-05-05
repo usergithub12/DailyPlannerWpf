@@ -23,29 +23,21 @@ namespace WpfDailyPlanner
         public DailyTask()
         {
             InitializeComponent();
-
-            TextBlock textBlock = new TextBlock();
-            textBlock.Text = "ky";//tb_taskdescr.Text;
-            Thickness margin = new Thickness();
-            margin.Left = 16;
-            margin.Top = 16;
-            margin.Right = 12;
-            margin.Bottom = 8;
-           // textBlock.Margin = margin;
-              //    textBlock.Style.Resources.Add( "StaticResource", "MaterialDesignUserForegroundCheckBox");
-            Thickness margincb = new Thickness();
-            margincb.Left = 16;
-            margincb.Top = 4;
-            margincb.Right = 16;
-            margincb.Bottom = 0;
     
-            CheckBox checkBox = new CheckBox();
-           // checkBox.Margin = margincb;
-            
-            st_notes.Children.Add(checkBox);
-            st_notes.Children.Add(textBlock);
+           
 
-         
+
+            Service1Client client = new Service1Client();
+
+            foreach (var item in client.GetGroups())
+            {
+                if (item.Name != null)
+                {
+                    cb_group.Items.Add(item.Name.ToString());
+                }
+            }
+
+
         }
 
         private void Btn_add_Click(object sender, RoutedEventArgs e)
@@ -58,7 +50,10 @@ namespace WpfDailyPlanner
             dailyTask.StartDate = DateTime.Parse(dp_start.Text);
             dailyTask.EndDate = DateTime.Parse(dp_end.Text);
           
-                
+            if (service1Client.GetGroupbyName(cb_group.Text) != null)
+            {
+                dailyTask.Group = service1Client.GetGroupbyName(cb_group.Text);
+            }
             service1Client.GetTaskToAdd(dailyTask);
         }
 
@@ -70,6 +65,88 @@ namespace WpfDailyPlanner
         private void Btn_save_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Cb_group_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            st_notes.Children.Clear();
+            TextBlock textBlock = new TextBlock();
+            textBlock.Text = "Task List";
+            textBlock.FontSize = 16;
+            textBlock.FontWeight = FontWeights.Bold;
+            Thickness margin = new Thickness();
+            margin.Left = 16;
+            margin.Top = 16;
+            margin.Right = 12;
+            margin.Bottom = 8;
+            textBlock.Margin = margin;
+
+
+
+
+            st_notes.Children.Add(textBlock);
+
+
+
+            if (cb_group.SelectedIndex != -1)
+            {
+          
+                if (!String.IsNullOrEmpty(cb_group.Text))
+                {
+                    Service1Client client = new Service1Client();
+                    Thickness margincb = new Thickness();
+
+                    margincb.Left = 16;
+                    margincb.Top = 4;
+                    margincb.Right = 16;
+                    margincb.Bottom = 0;
+
+
+
+                    foreach (var item in client.GetTasksFromGroup(cb_group.Text))
+                    {
+                        CheckBox checkBox = new CheckBox();
+
+                        checkBox.Margin = margincb;
+
+                        checkBox.Content = item.Name;
+                        st_notes.Children.Add(checkBox);
+                    }
+                }
+
+            }
+        }
+
+        private void Btn_addgroup_Click(object sender, RoutedEventArgs e)
+        {
+            Service1Client client = new Service1Client();
+            Group group = new Group();
+            group.Name = cb_group.Text;
+            client.GetGroupToAdd(group);
+            cb_group.Items.Clear();
+
+       
+
+            foreach (var item in client.GetGroups())
+            {
+                if (item.Name != null)
+                {
+                    cb_group.Items.Add(item.Name.ToString());
+                }
+            }
+        }
+
+        private void Btn_saveuser_Click(object sender, RoutedEventArgs e)
+        {
+            Service1Client client = new Service1Client();
+          var user=  client.GetUserbyName(tb_username.Text);
+            user.Login = tb_updatelogin.Text;
+            user.Password = tb_updatepassword.Text;
+            user.Telephone = tb_updatephone.Text;
+            user.PasswordConfirmation = tb_updatepassword.Text;
+            user.Email = tb_updateEmail.Text;
+            client.UpdateUser(user,tb_username.Text);
+            tb_username.Text = tb_updatelogin.Text;
         }
     }
 }

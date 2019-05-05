@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfDailyPlanner.ServiceReference1;
 
 namespace WpfDailyPlanner
 {
@@ -95,14 +96,18 @@ namespace WpfDailyPlanner
             //{
             //    item.IsChecked = true;
             //}
-
-
-
-
-
-
-
             //  this.Close();
+
+            Service1Client client = new Service1Client();
+            User u = new User();
+            u.Login = tb_login.Text;
+            u.Password = tb_password.Password;
+            u.PasswordConfirmation = tb_conf_password.Password;
+            u.Telephone = tb_telephone.Text;
+            u.Email = tb_email.Text;
+
+            client.GetUser(u);
+          
         }
 
         private void Btn_reset_Click(object sender, RoutedEventArgs e)

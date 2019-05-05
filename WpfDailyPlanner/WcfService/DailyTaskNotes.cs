@@ -7,6 +7,7 @@ using System.Web;
 namespace WcfService
 {
     [DataContract]
+    [KnownType(typeof(Group))]
     public class DailyTaskNotes
     {
         [DataMember]
@@ -21,6 +22,7 @@ namespace WcfService
         public DateTime EndDate { get; set; }
         [DataMember]
         public string Location { get; set; }
+        [DataMember]
         public virtual Group Group { get; set; }
 
     }

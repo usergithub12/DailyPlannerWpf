@@ -7,6 +7,7 @@ using System.Web;
 namespace WcfService
 {
     [DataContract]
+    [KnownType(typeof(Group))]
     public class User
     {
         [DataMember]

@@ -58,12 +58,20 @@ namespace WpfDailyPlanner
             //MainWindow mainWindow = new MainWindow();
             //mainWindow.ShowDialog();
 
+            DailyTask task = new DailyTask();
+            task.tb_username.Text = tb_login.Text;
+            task.tb_updatelogin.Text = tb_login.Text;
+            task.tb_updatepassword.Text = tb_password.Password;
+        
+            Hide();
+            task.ShowDialog();
         }
 
         private void Btn_sign_up_Click(object sender, RoutedEventArgs e)
         {
-            //Registration registration = new Registration();
-            //registration.ShowDialog();
+            Registration registration = new Registration();
+            registration.ShowDialog();
+
         }
     }
 }

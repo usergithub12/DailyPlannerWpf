@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDailyPlanner"
         mc:Ignorable="d"
-        Title="DailyTask" Height="337.5" Width="816.5"
+        Title="DailyTask" Height="333" Width="830"
           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,24 +15,25 @@
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}">
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <GroupBox Header="Task">
-        <StackPanel>
+            <StackPanel>
                 <TextBox
   x:Name="tb_taskname"
   materialDesign:HintAssist.Hint="Name" />
-                <ComboBox
+                <ComboBox SelectionChanged="Cb_group_SelectionChanged"
+                    Name="cb_group" FontSize="15"
   materialDesign:HintAssist.Hint="Group"
   IsEditable="True"
   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                   </ComboBox>
-       
+                </ComboBox>
+
                 <TextBox Name="tb_taskdescr"
     TextWrapping="Wrap"
     VerticalAlignment="Stretch"
@@ -45,25 +46,25 @@
   x:Name="tb_location"
   materialDesign:HintAssist.Hint="Location" />
                 <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition ></ColumnDefinition>
-                    <ColumnDefinition ></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.1*"></RowDefinition>
-                    <RowDefinition Height="0.2*"></RowDefinition>
-                    <RowDefinition Height="0.1*"></RowDefinition>
-                    <RowDefinition Height="0.2*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0"  Grid.ColumnSpan="2"   >Start Task</Label>
-                <Label Grid.Row="2"   Grid.ColumnSpan="2"  >End Task</Label>
-                <materialDesign:TimePicker Grid.Row="1"  Name="tp_start" Is24Hours="True" Language="uk" ></materialDesign:TimePicker>
-                <materialDesign:TimePicker  Grid.Row="3"  Name="tp_end" Is24Hours="True" Language="uk" ></materialDesign:TimePicker>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="0.2*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="0.2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0"  Grid.ColumnSpan="2"   >Start Task</Label>
+                    <Label Grid.Row="2"   Grid.ColumnSpan="2"  >End Task</Label>
+                    <materialDesign:TimePicker Grid.Row="1"  Name="tp_start" Is24Hours="True" Language="uk" ></materialDesign:TimePicker>
+                    <materialDesign:TimePicker  Grid.Row="3"  Name="tp_end" Is24Hours="True" Language="uk" ></materialDesign:TimePicker>
 
-                <DatePicker   Language="uk" Grid.Row="1" Grid.Column="1" Name="dp_start"></DatePicker>
-                <DatePicker   Language="uk" Grid.Row="3" Grid.Column="1" Name="dp_end"></DatePicker>
-            </Grid>
-        </StackPanel>
+                    <DatePicker   Language="uk" Grid.Row="1" Grid.Column="1" Name="dp_start"></DatePicker>
+                    <DatePicker   Language="uk" Grid.Row="3" Grid.Column="1" Name="dp_end"></DatePicker>
+                </Grid>
+            </StackPanel>
         </GroupBox>
         <StackPanel Grid.Column="1">
             <!--<ListBox Name="lb_tasks">
@@ -72,20 +73,128 @@
             <Button Name="btn_add" Click="Btn_add_Click">Add task</Button>
             <Button Name="btn_delete" Click="Btn_delete_Click">Delete task</Button>
             <Button Name="btn_save" Click="Btn_save_Click">Save</Button>
-
+            <Button Name="btn_addgroup" Click="Btn_addgroup_Click">Add Group</Button>
             <materialDesign:Card
   Background="{DynamicResource PrimaryHueDarkBrush}"
   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-  Width="200"
   Padding="8">
                 <StackPanel Name="st_notes">
-                   
+
 
                 </StackPanel>
             </materialDesign:Card>
-
-
         </StackPanel>
+
+        <materialDesign:Flipper Grid.Column="2"
+   Height="302" Width="274"  >
+            <materialDesign:Flipper.FrontContent>
+                <Grid
+    >
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+           />
+                        <RowDefinition
+          />
+                    </Grid.RowDefinitions>
+                    <materialDesign:ColorZone
+      
+        VerticalAlignment="Stretch">
+                        <materialDesign:PackIcon
+          Kind="AccountCircle"
+          Height="128"
+          Width="128"
+          VerticalAlignment="Center"
+          HorizontalAlignment="Center" />
+                    </materialDesign:ColorZone>
+                    <StackPanel
+        Grid.Row="1"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center">
+                        <TextBlock Name="tb_username">
+
+                        </TextBlock>
+                        <Button Name="btn_edituser"
+          Style="{StaticResource MaterialDesignFlatButton}"
+          Command="{x:Static materialDesign:Flipper.FlipCommand}"
+          Margin="0 4 0 0">
+                            EDIT
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Flipper.FrontContent>
+            <materialDesign:Flipper.BackContent>
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+          Height="Auto" />
+                        <RowDefinition
+          Height="*" />
+                    </Grid.RowDefinitions>
+                    <materialDesign:ColorZone
+        Mode="Accent"
+        Padding="6">
+                        <StackPanel
+          Orientation="Horizontal">
+                            <Button
+            Style="{StaticResource MaterialDesignToolForegroundButton}"
+            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+            HorizontalAlignment="Left">
+                                <materialDesign:PackIcon
+              Kind="ArrowLeft"
+              HorizontalAlignment="Right" />
+                            </Button>
+                            <TextBlock
+            Margin="8 0 0 0"
+            VerticalAlignment="Center">
+          EDIT USER
+                            </TextBlock>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <Grid
+        Grid.Row="1"
+        Margin="0 6 0 0"
     
+        VerticalAlignment="Top"
+       >
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBox
+          materialDesign:HintAssist.Hint="First name"
+          materialDesign:HintAssist.IsFloating="True"
+          Margin="5 12 5 0" Name="tb_updatelogin">
+
+                        </TextBox>
+                        <TextBox
+          Grid.Row="1"
+          materialDesign:HintAssist.Hint="Last name"
+          materialDesign:HintAssist.IsFloating="True"
+          Margin="5 12 5 0" Name="tb_updatepassword">
+
+                        </TextBox>
+
+                        <TextBox Grid.Row="2"
+          materialDesign:HintAssist.Hint="Email"
+          materialDesign:HintAssist.IsFloating="True"
+          Margin="5 12 5 0" Name="tb_updateEmail">
+
+                        </TextBox>
+                        <TextBox
+          Grid.Row="3"
+          materialDesign:HintAssist.Hint="Phone"
+          materialDesign:HintAssist.IsFloating="True"
+          Margin="5 12 5 4" Name="tb_updatephone">
+
+                        </TextBox>
+                        <Button Click="Btn_saveuser_Click" Name="btn_saveuser"  Grid.Row="4">Save</Button>
+                    </Grid>
+                </Grid>
+            </materialDesign:Flipper.BackContent>
+        </materialDesign:Flipper>
+
     </Grid>
 </Window>

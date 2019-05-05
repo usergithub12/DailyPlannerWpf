@@ -25,6 +25,42 @@
   <wsdl:message name="IService1_GetTasks_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTasksResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetGroups_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroups" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetGroups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTasksFromGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTasksFromGroup" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTasksFromGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTasksFromGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetGroupbyName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupbyName" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetGroupbyName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupbyNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetGroupToAdd_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupToAdd" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetGroupToAdd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupToAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserbyName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserbyName" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserbyName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserbyNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUser" message="tns:IService1_GetUser_InputMessage" />
@@ -37,6 +73,30 @@
     <wsdl:operation name="GetTasks">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTasks" message="tns:IService1_GetTasks_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTasksResponse" message="tns:IService1_GetTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroups">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetGroups" message="tns:IService1_GetGroups_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetGroupsResponse" message="tns:IService1_GetGroups_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksFromGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTasksFromGroup" message="tns:IService1_GetTasksFromGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTasksFromGroupResponse" message="tns:IService1_GetTasksFromGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupbyName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetGroupbyName" message="tns:IService1_GetGroupbyName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetGroupbyNameResponse" message="tns:IService1_GetGroupbyName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupToAdd">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetGroupToAdd" message="tns:IService1_GetGroupToAdd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetGroupToAddResponse" message="tns:IService1_GetGroupToAdd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserbyName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUserbyName" message="tns:IService1_GetUserbyName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUserbyNameResponse" message="tns:IService1_GetUserbyName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateUser" message="tns:IService1_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateUserResponse" message="tns:IService1_UpdateUser_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -61,6 +121,60 @@
     </wsdl:operation>
     <wsdl:operation name="GetTasks">
       <soap:operation soapAction="http://tempuri.org/IService1/GetTasks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroups">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksFromGroup">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTasksFromGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupbyName">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetGroupbyName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupToAdd">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetGroupToAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserbyName">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetUserbyName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

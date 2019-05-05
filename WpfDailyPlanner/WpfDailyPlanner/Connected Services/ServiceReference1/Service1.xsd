@@ -11,10 +11,25 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="Group">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tasks" nillable="true" type="tns:ArrayOfDailyTaskNotes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Group" nillable="true" type="tns:Group" />
+  <xs:complexType name="ArrayOfDailyTaskNotes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DailyTaskNotes" nillable="true" type="tns:DailyTaskNotes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDailyTaskNotes" nillable="true" type="tns:ArrayOfDailyTaskNotes" />
   <xs:complexType name="DailyTaskNotes">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Group" nillable="true" type="tns:Group" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
@@ -22,10 +37,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DailyTaskNotes" nillable="true" type="tns:DailyTaskNotes" />
-  <xs:complexType name="ArrayOfDailyTaskNotes">
+  <xs:complexType name="ArrayOfGroup">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="DailyTaskNotes" nillable="true" type="tns:DailyTaskNotes" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Group" nillable="true" type="tns:Group" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfDailyTaskNotes" nillable="true" type="tns:ArrayOfDailyTaskNotes" />
+  <xs:element name="ArrayOfGroup" nillable="true" type="tns:ArrayOfGroup" />
 </xs:schema>

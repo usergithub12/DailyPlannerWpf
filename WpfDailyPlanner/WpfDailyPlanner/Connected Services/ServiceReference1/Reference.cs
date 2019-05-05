@@ -154,6 +154,9 @@ namespace WpfDailyPlanner.ServiceReference1 {
         private System.DateTime EndDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfDailyPlanner.ServiceReference1.Group GroupField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -197,6 +200,19 @@ namespace WpfDailyPlanner.ServiceReference1 {
                 if ((this.EndDateField.Equals(value) != true)) {
                     this.EndDateField = value;
                     this.RaisePropertyChanged("EndDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfDailyPlanner.ServiceReference1.Group Group {
+            get {
+                return this.GroupField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupField, value) != true)) {
+                    this.GroupField = value;
+                    this.RaisePropertyChanged("Group");
                 }
             }
         }
@@ -263,6 +279,83 @@ namespace WpfDailyPlanner.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Group", Namespace="http://schemas.datacontract.org/2004/07/WcfService")]
+    [System.SerializableAttribute()]
+    public partial class Group : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfDailyPlanner.ServiceReference1.DailyTaskNotes[] TasksField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfDailyPlanner.ServiceReference1.DailyTaskNotes[] Tasks {
+            get {
+                return this.TasksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TasksField, value) != true)) {
+                    this.TasksField = value;
+                    this.RaisePropertyChanged("Tasks");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
@@ -284,6 +377,42 @@ namespace WpfDailyPlanner.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTasks", ReplyAction="http://tempuri.org/IService1/GetTasksResponse")]
         System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes[]> GetTasksAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetGroups", ReplyAction="http://tempuri.org/IService1/GetGroupsResponse")]
+        WpfDailyPlanner.ServiceReference1.Group[] GetGroups();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetGroups", ReplyAction="http://tempuri.org/IService1/GetGroupsResponse")]
+        System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.Group[]> GetGroupsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTasksFromGroup", ReplyAction="http://tempuri.org/IService1/GetTasksFromGroupResponse")]
+        WpfDailyPlanner.ServiceReference1.DailyTaskNotes[] GetTasksFromGroup(string groupname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTasksFromGroup", ReplyAction="http://tempuri.org/IService1/GetTasksFromGroupResponse")]
+        System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes[]> GetTasksFromGroupAsync(string groupname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetGroupbyName", ReplyAction="http://tempuri.org/IService1/GetGroupbyNameResponse")]
+        WpfDailyPlanner.ServiceReference1.Group GetGroupbyName(string groupname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetGroupbyName", ReplyAction="http://tempuri.org/IService1/GetGroupbyNameResponse")]
+        System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.Group> GetGroupbyNameAsync(string groupname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetGroupToAdd", ReplyAction="http://tempuri.org/IService1/GetGroupToAddResponse")]
+        void GetGroupToAdd(WpfDailyPlanner.ServiceReference1.Group group);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetGroupToAdd", ReplyAction="http://tempuri.org/IService1/GetGroupToAddResponse")]
+        System.Threading.Tasks.Task GetGroupToAddAsync(WpfDailyPlanner.ServiceReference1.Group group);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUserbyName", ReplyAction="http://tempuri.org/IService1/GetUserbyNameResponse")]
+        WpfDailyPlanner.ServiceReference1.User GetUserbyName(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUserbyName", ReplyAction="http://tempuri.org/IService1/GetUserbyNameResponse")]
+        System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.User> GetUserbyNameAsync(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateUser", ReplyAction="http://tempuri.org/IService1/UpdateUserResponse")]
+        void UpdateUser(WpfDailyPlanner.ServiceReference1.User user, string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateUser", ReplyAction="http://tempuri.org/IService1/UpdateUserResponse")]
+        System.Threading.Tasks.Task UpdateUserAsync(WpfDailyPlanner.ServiceReference1.User user, string login);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -335,6 +464,54 @@ namespace WpfDailyPlanner.ServiceReference1 {
         
         public System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes[]> GetTasksAsync() {
             return base.Channel.GetTasksAsync();
+        }
+        
+        public WpfDailyPlanner.ServiceReference1.Group[] GetGroups() {
+            return base.Channel.GetGroups();
+        }
+        
+        public System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.Group[]> GetGroupsAsync() {
+            return base.Channel.GetGroupsAsync();
+        }
+        
+        public WpfDailyPlanner.ServiceReference1.DailyTaskNotes[] GetTasksFromGroup(string groupname) {
+            return base.Channel.GetTasksFromGroup(groupname);
+        }
+        
+        public System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes[]> GetTasksFromGroupAsync(string groupname) {
+            return base.Channel.GetTasksFromGroupAsync(groupname);
+        }
+        
+        public WpfDailyPlanner.ServiceReference1.Group GetGroupbyName(string groupname) {
+            return base.Channel.GetGroupbyName(groupname);
+        }
+        
+        public System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.Group> GetGroupbyNameAsync(string groupname) {
+            return base.Channel.GetGroupbyNameAsync(groupname);
+        }
+        
+        public void GetGroupToAdd(WpfDailyPlanner.ServiceReference1.Group group) {
+            base.Channel.GetGroupToAdd(group);
+        }
+        
+        public System.Threading.Tasks.Task GetGroupToAddAsync(WpfDailyPlanner.ServiceReference1.Group group) {
+            return base.Channel.GetGroupToAddAsync(group);
+        }
+        
+        public WpfDailyPlanner.ServiceReference1.User GetUserbyName(string login) {
+            return base.Channel.GetUserbyName(login);
+        }
+        
+        public System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.User> GetUserbyNameAsync(string login) {
+            return base.Channel.GetUserbyNameAsync(login);
+        }
+        
+        public void UpdateUser(WpfDailyPlanner.ServiceReference1.User user, string login) {
+            base.Channel.UpdateUser(user, login);
+        }
+        
+        public System.Threading.Tasks.Task UpdateUserAsync(WpfDailyPlanner.ServiceReference1.User user, string login) {
+            return base.Channel.UpdateUserAsync(user, login);
         }
     }
 }
