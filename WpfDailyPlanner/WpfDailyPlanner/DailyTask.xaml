@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDailyPlanner"
         mc:Ignorable="d"
-        Title="DailyTask" Height="333" Width="830"
+        Title="DailyTask" Height="639" Width="891.5"
           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -22,6 +22,10 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
         <GroupBox Header="Task">
             <StackPanel>
                 <TextBox
@@ -58,7 +62,7 @@
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0"  Grid.ColumnSpan="2"   >Start Task</Label>
                     <Label Grid.Row="2"   Grid.ColumnSpan="2"  >End Task</Label>
-                    <materialDesign:TimePicker Grid.Row="1"  Name="tp_start" Is24Hours="True" Language="uk" ></materialDesign:TimePicker>
+                    <materialDesign:TimePicker  Grid.Row="1"  Name="tp_start" Is24Hours="True" Language="uk" ></materialDesign:TimePicker>
                     <materialDesign:TimePicker  Grid.Row="3"  Name="tp_end" Is24Hours="True" Language="uk" ></materialDesign:TimePicker>
 
                     <DatePicker   Language="uk" Grid.Row="1" Grid.Column="1" Name="dp_start"></DatePicker>
@@ -195,6 +199,7 @@
                 </Grid>
             </materialDesign:Flipper.BackContent>
         </materialDesign:Flipper>
-
+        <Calendar SelectedDatesChanged="Cl_datepick_SelectedDatesChanged" Name="cl_datepick"  Grid.Row="1"></Calendar>
+        <ListBox Grid.Row="1" Grid.Column="2" Name="lb_showtasks"></ListBox>
     </Grid>
 </Window>

@@ -413,6 +413,12 @@ namespace WpfDailyPlanner.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateUser", ReplyAction="http://tempuri.org/IService1/UpdateUserResponse")]
         System.Threading.Tasks.Task UpdateUserAsync(WpfDailyPlanner.ServiceReference1.User user, string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTasksByDate", ReplyAction="http://tempuri.org/IService1/GetTasksByDateResponse")]
+        WpfDailyPlanner.ServiceReference1.DailyTaskNotes[] GetTasksByDate(System.DateTime date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTasksByDate", ReplyAction="http://tempuri.org/IService1/GetTasksByDateResponse")]
+        System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes[]> GetTasksByDateAsync(System.DateTime date);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -512,6 +518,14 @@ namespace WpfDailyPlanner.ServiceReference1 {
         
         public System.Threading.Tasks.Task UpdateUserAsync(WpfDailyPlanner.ServiceReference1.User user, string login) {
             return base.Channel.UpdateUserAsync(user, login);
+        }
+        
+        public WpfDailyPlanner.ServiceReference1.DailyTaskNotes[] GetTasksByDate(System.DateTime date) {
+            return base.Channel.GetTasksByDate(date);
+        }
+        
+        public System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes[]> GetTasksByDateAsync(System.DateTime date) {
+            return base.Channel.GetTasksByDateAsync(date);
         }
     }
 }

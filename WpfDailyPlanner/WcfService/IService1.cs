@@ -30,7 +30,8 @@ namespace WcfService
         User GetUserbyName(string login);
         [OperationContract]
         void UpdateUser(User user,string login);
-
+        [OperationContract]
+        DailyTaskNotes[] GetTasksByDate(DateTime date);
 
     }
 

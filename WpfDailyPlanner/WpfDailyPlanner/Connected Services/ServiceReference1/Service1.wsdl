@@ -61,6 +61,12 @@
   <wsdl:message name="IService1_UpdateUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetTasksByDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTasksByDate" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTasksByDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTasksByDateResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUser" message="tns:IService1_GetUser_InputMessage" />
@@ -97,6 +103,10 @@
     <wsdl:operation name="UpdateUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateUser" message="tns:IService1_UpdateUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateUserResponse" message="tns:IService1_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTasksByDate" message="tns:IService1_GetTasksByDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTasksByDateResponse" message="tns:IService1_GetTasksByDate_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -175,6 +185,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateUser">
       <soap:operation soapAction="http://tempuri.org/IService1/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByDate">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTasksByDate" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

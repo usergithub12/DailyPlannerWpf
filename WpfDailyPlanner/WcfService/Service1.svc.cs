@@ -81,5 +81,20 @@ namespace WcfService
             temp.PasswordConfirmation = user.PasswordConfirmation;
             dB.SaveChanges();
         }
+
+        public DailyTaskNotes[] GetTasksByDate(DateTime date)
+        {
+            DailyPlannerDB dB = new DailyPlannerDB();
+            dB.Configuration.ProxyCreationEnabled = false;
+            List<DailyTaskNotes> temp = new List<DailyTaskNotes>();
+            foreach (var item in dB.Tasks)
+            {
+                if(DateTime.Parse(item.StartDate.ToShortDateString())==date)
+                {
+                    temp.Add(item);
+                }
+            }
+                    return temp.ToArray();
+        }
     }
 }

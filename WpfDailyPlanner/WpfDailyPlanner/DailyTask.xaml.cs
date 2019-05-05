@@ -23,9 +23,9 @@ namespace WpfDailyPlanner
         public DailyTask()
         {
             InitializeComponent();
-    
-           
 
+
+         
 
             Service1Client client = new Service1Client();
 
@@ -47,9 +47,10 @@ namespace WpfDailyPlanner
             dailyTask.Description = tb_taskdescr.Text;
             dailyTask.Name = tb_taskname.Text;
             dailyTask.Location = tb_location.Text;
-            dailyTask.StartDate = DateTime.Parse(dp_start.Text);
-            dailyTask.EndDate = DateTime.Parse(dp_end.Text);
-          
+        
+            dailyTask.StartDate = Convert.ToDateTime(dp_start.Text +" "+ Convert.ToDateTime(tp_start.Text).ToLongTimeString());
+            dailyTask.EndDate = Convert.ToDateTime(dp_end.Text + " " + Convert.ToDateTime(tp_end.Text).ToLongTimeString());
+
             if (service1Client.GetGroupbyName(cb_group.Text) != null)
             {
                 dailyTask.Group = service1Client.GetGroupbyName(cb_group.Text);
@@ -147,6 +148,23 @@ namespace WpfDailyPlanner
             user.Email = tb_updateEmail.Text;
             client.UpdateUser(user,tb_username.Text);
             tb_username.Text = tb_updatelogin.Text;
+        }
+
+        private void Cl_datepick_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(cl_datepick.SelectedDate!=null)
+            {
+
+                
+               MessageBox.Show(cl_datepick.SelectedDate.Value.ToShortDateString());
+                Service1Client client = new Service1Client();
+                foreach (var item in client.GetTasksByDate(DateTime.Parse(cl_datepick.SelectedDate.ToString())))
+                {
+                    lb_showtasks.Items.Add($" Name: {item.Name}" +"\n"+ $" Group: {item.Group}" + "\n" + $" Description: {item.Description}" + "\n" + $" StartDate: {item.StartDate} " + "\n" + $" EndDAte: {item.EndDate} " + "\n" + $" Location: {item.Location}");
+                }
+             
+            }
+
         }
     }
 }
