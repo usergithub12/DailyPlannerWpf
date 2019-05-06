@@ -419,6 +419,18 @@ namespace WpfDailyPlanner.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTasksByDate", ReplyAction="http://tempuri.org/IService1/GetTasksByDateResponse")]
         System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes[]> GetTasksByDateAsync(System.DateTime date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteTaskByName", ReplyAction="http://tempuri.org/IService1/DeleteTaskByNameResponse")]
+        void DeleteTaskByName(string taskname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteTaskByName", ReplyAction="http://tempuri.org/IService1/DeleteTaskByNameResponse")]
+        System.Threading.Tasks.Task DeleteTaskByNameAsync(string taskname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteGroupByName", ReplyAction="http://tempuri.org/IService1/DeleteGroupByNameResponse")]
+        void DeleteGroupByName(string groupname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteGroupByName", ReplyAction="http://tempuri.org/IService1/DeleteGroupByNameResponse")]
+        System.Threading.Tasks.Task DeleteGroupByNameAsync(string groupname);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -526,6 +538,22 @@ namespace WpfDailyPlanner.ServiceReference1 {
         
         public System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes[]> GetTasksByDateAsync(System.DateTime date) {
             return base.Channel.GetTasksByDateAsync(date);
+        }
+        
+        public void DeleteTaskByName(string taskname) {
+            base.Channel.DeleteTaskByName(taskname);
+        }
+        
+        public System.Threading.Tasks.Task DeleteTaskByNameAsync(string taskname) {
+            return base.Channel.DeleteTaskByNameAsync(taskname);
+        }
+        
+        public void DeleteGroupByName(string groupname) {
+            base.Channel.DeleteGroupByName(groupname);
+        }
+        
+        public System.Threading.Tasks.Task DeleteGroupByNameAsync(string groupname) {
+            return base.Channel.DeleteGroupByNameAsync(groupname);
         }
     }
 }

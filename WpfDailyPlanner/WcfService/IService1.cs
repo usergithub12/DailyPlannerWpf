@@ -32,7 +32,10 @@ namespace WcfService
         void UpdateUser(User user,string login);
         [OperationContract]
         DailyTaskNotes[] GetTasksByDate(DateTime date);
-
+        [OperationContract]
+        void DeleteTaskByName(string taskname);
+        [OperationContract]
+        void DeleteGroupByName(string groupname);
     }
 
 

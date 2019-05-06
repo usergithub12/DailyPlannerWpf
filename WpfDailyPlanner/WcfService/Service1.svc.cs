@@ -96,5 +96,21 @@ namespace WcfService
             }
                     return temp.ToArray();
         }
+
+        public void DeleteTaskByName(string taskname)
+        {
+            DailyPlannerDB dB= new DailyPlannerDB();
+            DailyTaskNotes dailyTask = dB.Tasks.Where(t => t.Name == taskname).FirstOrDefault();
+            dB.Tasks.Remove(dailyTask);
+            dB.SaveChanges();
+        }
+
+        public void DeleteGroupByName(string groupname)
+        {
+            DailyPlannerDB dB = new DailyPlannerDB();
+            Group group = dB.Groups.Where(t => t.Name == groupname).FirstOrDefault();
+            dB.Groups.Remove(group);
+            dB.SaveChanges();
+        }
     }
 }

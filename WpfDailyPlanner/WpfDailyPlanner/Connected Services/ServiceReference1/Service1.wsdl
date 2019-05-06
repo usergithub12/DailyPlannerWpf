@@ -67,6 +67,18 @@
   <wsdl:message name="IService1_GetTasksByDate_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTasksByDateResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_DeleteTaskByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTaskByName" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteTaskByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTaskByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteGroupByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGroupByName" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteGroupByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGroupByNameResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUser" message="tns:IService1_GetUser_InputMessage" />
@@ -107,6 +119,14 @@
     <wsdl:operation name="GetTasksByDate">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTasksByDate" message="tns:IService1_GetTasksByDate_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTasksByDateResponse" message="tns:IService1_GetTasksByDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTaskByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteTaskByName" message="tns:IService1_DeleteTaskByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteTaskByNameResponse" message="tns:IService1_DeleteTaskByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGroupByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteGroupByName" message="tns:IService1_DeleteGroupByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteGroupByNameResponse" message="tns:IService1_DeleteGroupByName_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -194,6 +214,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetTasksByDate">
       <soap:operation soapAction="http://tempuri.org/IService1/GetTasksByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTaskByName">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteTaskByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGroupByName">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteGroupByName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

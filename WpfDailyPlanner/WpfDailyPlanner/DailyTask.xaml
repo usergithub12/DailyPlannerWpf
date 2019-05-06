@@ -78,6 +78,7 @@
             <Button Name="btn_delete" Click="Btn_delete_Click">Delete task</Button>
             <Button Name="btn_save" Click="Btn_save_Click">Save</Button>
             <Button Name="btn_addgroup" Click="Btn_addgroup_Click">Add Group</Button>
+            <Button Name="btn_deletegroup" Click="Btn_deletegroup_Click">Delete Group</Button>
             <materialDesign:Card
   Background="{DynamicResource PrimaryHueDarkBrush}"
   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"

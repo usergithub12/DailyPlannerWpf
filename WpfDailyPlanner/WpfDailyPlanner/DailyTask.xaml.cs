@@ -25,7 +25,7 @@ namespace WpfDailyPlanner
             InitializeComponent();
 
 
-         
+
 
             Service1Client client = new Service1Client();
 
@@ -47,8 +47,8 @@ namespace WpfDailyPlanner
             dailyTask.Description = tb_taskdescr.Text;
             dailyTask.Name = tb_taskname.Text;
             dailyTask.Location = tb_location.Text;
-        
-            dailyTask.StartDate = Convert.ToDateTime(dp_start.Text +" "+ Convert.ToDateTime(tp_start.Text).ToLongTimeString());
+
+            dailyTask.StartDate = Convert.ToDateTime(dp_start.Text + " " + Convert.ToDateTime(tp_start.Text).ToLongTimeString());
             dailyTask.EndDate = Convert.ToDateTime(dp_end.Text + " " + Convert.ToDateTime(tp_end.Text).ToLongTimeString());
 
             if (service1Client.GetGroupbyName(cb_group.Text) != null)
@@ -60,6 +60,10 @@ namespace WpfDailyPlanner
 
         private void Btn_delete_Click(object sender, RoutedEventArgs e)
         {
+            DeleteTask deleteTask = new DeleteTask();
+            deleteTask.Owner = this;
+            //deleteTask.tb_TaskName.Text
+            deleteTask.ShowDialog();
 
         }
 
@@ -91,7 +95,7 @@ namespace WpfDailyPlanner
 
             if (cb_group.SelectedIndex != -1)
             {
-          
+
                 if (!String.IsNullOrEmpty(cb_group.Text))
                 {
                     Service1Client client = new Service1Client();
@@ -120,13 +124,17 @@ namespace WpfDailyPlanner
 
         private void Btn_addgroup_Click(object sender, RoutedEventArgs e)
         {
+
+            AddGroup addGroup = new AddGroup();
+            addGroup.Owner = this;
+            addGroup.ShowDialog();
+
+
             Service1Client client = new Service1Client();
-            Group group = new Group();
-            group.Name = cb_group.Text;
-            client.GetGroupToAdd(group);
+
             cb_group.Items.Clear();
 
-       
+
 
             foreach (var item in client.GetGroups())
             {
@@ -140,31 +148,37 @@ namespace WpfDailyPlanner
         private void Btn_saveuser_Click(object sender, RoutedEventArgs e)
         {
             Service1Client client = new Service1Client();
-          var user=  client.GetUserbyName(tb_username.Text);
+            var user = client.GetUserbyName(tb_username.Text);
             user.Login = tb_updatelogin.Text;
             user.Password = tb_updatepassword.Text;
             user.Telephone = tb_updatephone.Text;
             user.PasswordConfirmation = tb_updatepassword.Text;
             user.Email = tb_updateEmail.Text;
-            client.UpdateUser(user,tb_username.Text);
+            client.UpdateUser(user, tb_username.Text);
             tb_username.Text = tb_updatelogin.Text;
         }
 
         private void Cl_datepick_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(cl_datepick.SelectedDate!=null)
+            lb_showtasks.Items.Clear();
+            if (cl_datepick.SelectedDate != null)
             {
-
-                
-               MessageBox.Show(cl_datepick.SelectedDate.Value.ToShortDateString());
                 Service1Client client = new Service1Client();
                 foreach (var item in client.GetTasksByDate(DateTime.Parse(cl_datepick.SelectedDate.ToString())))
                 {
-                    lb_showtasks.Items.Add($" Name: {item.Name}" +"\n"+ $" Group: {item.Group}" + "\n" + $" Description: {item.Description}" + "\n" + $" StartDate: {item.StartDate} " + "\n" + $" EndDAte: {item.EndDate} " + "\n" + $" Location: {item.Location}");
+                    lb_showtasks.Items.Add($" Name: {item.Name}" + "\n" + $" Group: {item.Group}" + "\n" + $" Description: {item.Description}" + "\n" + $" StartDate: {item.StartDate} " + "\n" + $" EndDAte: {item.EndDate} " + "\n" + $" Location: {item.Location}");
                 }
-             
+
             }
 
+        }
+
+        private void Btn_deletegroup_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteGroup deleteGroup = new DeleteGroup();
+            deleteGroup.Owner = this;
+            deleteGroup.tb_GroupName.Text = cb_group.SelectedValue.ToString();
+            deleteGroup.ShowDialog();
         }
     }
 }

@@ -63,7 +63,7 @@ namespace WpfDailyPlanner
             task.tb_updatelogin.Text = tb_login.Text;
             task.tb_updatepassword.Text = tb_password.Password;
         
-            Hide();
+            this.Close();
             task.ShowDialog();
         }
 
