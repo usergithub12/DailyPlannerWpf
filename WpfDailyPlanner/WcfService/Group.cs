@@ -15,6 +15,8 @@ namespace WcfService
         [DataMember]
         public string Name { get; set; }
         [DataMember]
+        public bool IsDeleted { get; set; }
+        [DataMember]
         public virtual IEnumerable<DailyTaskNotes> Tasks { get; set; }
     }
 }

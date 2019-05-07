@@ -28,6 +28,7 @@ namespace WpfDailyPlanner
         private void Btn_confirm_Click(object sender, RoutedEventArgs e)
         {
             Service1Client client = new Service1Client();
+        
             client.DeleteGroupByName(tb_GroupName.Text);
             this.Close();
         }

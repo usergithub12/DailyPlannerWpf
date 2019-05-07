@@ -160,6 +160,9 @@ namespace WpfDailyPlanner.ServiceReference1 {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsDeletedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string LocationField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -231,6 +234,19 @@ namespace WpfDailyPlanner.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsDeleted {
+            get {
+                return this.IsDeletedField;
+            }
+            set {
+                if ((this.IsDeletedField.Equals(value) != true)) {
+                    this.IsDeletedField = value;
+                    this.RaisePropertyChanged("IsDeleted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Location {
             get {
                 return this.LocationField;
@@ -292,6 +308,9 @@ namespace WpfDailyPlanner.ServiceReference1 {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsDeletedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -316,6 +335,19 @@ namespace WpfDailyPlanner.ServiceReference1 {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsDeleted {
+            get {
+                return this.IsDeletedField;
+            }
+            set {
+                if ((this.IsDeletedField.Equals(value) != true)) {
+                    this.IsDeletedField = value;
+                    this.RaisePropertyChanged("IsDeleted");
                 }
             }
         }

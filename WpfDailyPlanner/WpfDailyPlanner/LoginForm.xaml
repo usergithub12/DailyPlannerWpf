@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WpfDailyPlanner"
         mc:Ignorable="d"
         Title="Login" Height="245.877" Width="459.294"
+        WindowStartupLocation="CenterOwner"
               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDailyPlanner"
         mc:Ignorable="d"
-        Title="DailyTask" Height="639" Width="891.5"
+        Title="DailyTask" Height="691.5" Width="878"
           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -200,7 +200,7 @@
                 </Grid>
             </materialDesign:Flipper.BackContent>
         </materialDesign:Flipper>
-        <Calendar SelectedDatesChanged="Cl_datepick_SelectedDatesChanged" Name="cl_datepick"  Grid.Row="1"></Calendar>
+        <Calendar SelectedDatesChanged="Cl_datepick_SelectedDatesChanged" Name="cl_datepick"  Grid.Row="1" Language="uk"></Calendar>
         <ListBox Grid.Row="1" Grid.Column="2" Name="lb_showtasks"></ListBox>
     </Grid>
 </Window>

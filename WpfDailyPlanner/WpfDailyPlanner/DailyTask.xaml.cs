@@ -24,9 +24,6 @@ namespace WpfDailyPlanner
         {
             InitializeComponent();
 
-
-
-
             Service1Client client = new Service1Client();
 
             foreach (var item in client.GetGroups())
@@ -36,8 +33,6 @@ namespace WpfDailyPlanner
                     cb_group.Items.Add(item.Name.ToString());
                 }
             }
-
-
         }
 
         private void Btn_add_Click(object sender, RoutedEventArgs e)
@@ -47,7 +42,7 @@ namespace WpfDailyPlanner
             dailyTask.Description = tb_taskdescr.Text;
             dailyTask.Name = tb_taskname.Text;
             dailyTask.Location = tb_location.Text;
-
+            dailyTask.IsDeleted = false;
             dailyTask.StartDate = Convert.ToDateTime(dp_start.Text + " " + Convert.ToDateTime(tp_start.Text).ToLongTimeString());
             dailyTask.EndDate = Convert.ToDateTime(dp_end.Text + " " + Convert.ToDateTime(tp_end.Text).ToLongTimeString());
 
@@ -62,9 +57,7 @@ namespace WpfDailyPlanner
         {
             DeleteTask deleteTask = new DeleteTask();
             deleteTask.Owner = this;
-            //deleteTask.tb_TaskName.Text
             deleteTask.ShowDialog();
-
         }
 
         private void Btn_save_Click(object sender, RoutedEventArgs e)
@@ -86,13 +79,7 @@ namespace WpfDailyPlanner
             margin.Bottom = 8;
             textBlock.Margin = margin;
 
-
-
-
             st_notes.Children.Add(textBlock);
-
-
-
             if (cb_group.SelectedIndex != -1)
             {
 
@@ -105,17 +92,17 @@ namespace WpfDailyPlanner
                     margincb.Top = 4;
                     margincb.Right = 16;
                     margincb.Bottom = 0;
-
-
-
                     foreach (var item in client.GetTasksFromGroup(cb_group.Text))
                     {
-                        CheckBox checkBox = new CheckBox();
+                        if (!item.IsDeleted)
+                        {
+                            CheckBox checkBox = new CheckBox();
 
-                        checkBox.Margin = margincb;
+                            checkBox.Margin = margincb;
 
-                        checkBox.Content = item.Name;
-                        st_notes.Children.Add(checkBox);
+                            checkBox.Content = item.Name;
+                            st_notes.Children.Add(checkBox);
+                        }
                     }
                 }
 
@@ -129,18 +116,17 @@ namespace WpfDailyPlanner
             addGroup.Owner = this;
             addGroup.ShowDialog();
 
-
             Service1Client client = new Service1Client();
 
             cb_group.Items.Clear();
-
-
-
             foreach (var item in client.GetGroups())
             {
                 if (item.Name != null)
                 {
-                    cb_group.Items.Add(item.Name.ToString());
+                    if (!item.IsDeleted)
+                    {
+                        cb_group.Items.Add(item.Name.ToString());
+                    }
                 }
             }
         }
@@ -166,7 +152,10 @@ namespace WpfDailyPlanner
                 Service1Client client = new Service1Client();
                 foreach (var item in client.GetTasksByDate(DateTime.Parse(cl_datepick.SelectedDate.ToString())))
                 {
-                    lb_showtasks.Items.Add($" Name: {item.Name}" + "\n" + $" Group: {item.Group}" + "\n" + $" Description: {item.Description}" + "\n" + $" StartDate: {item.StartDate} " + "\n" + $" EndDAte: {item.EndDate} " + "\n" + $" Location: {item.Location}");
+                    if (!item.IsDeleted)
+                    {
+                        lb_showtasks.Items.Add($" Name: {item.Name}" + "\n" + $" Group: {item.Group}" + "\n" + $" Description: {item.Description}" + "\n" + $" StartDate: {item.StartDate} " + "\n" + $" EndDAte: {item.EndDate} " + "\n" + $" Location: {item.Location}");
+                    }
                 }
 
             }
@@ -177,8 +166,12 @@ namespace WpfDailyPlanner
         {
             DeleteGroup deleteGroup = new DeleteGroup();
             deleteGroup.Owner = this;
-            deleteGroup.tb_GroupName.Text = cb_group.SelectedValue.ToString();
+            if (cb_group.SelectedIndex != -1)
+            {
+                deleteGroup.tb_GroupName.Text = cb_group.SelectedValue.ToString();
+            }
             deleteGroup.ShowDialog();
+            cb_group.Items.Refresh();
         }
     }
 }

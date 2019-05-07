@@ -24,5 +24,12 @@ namespace WpfDailyPlanner
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LoginForm login = new LoginForm();
+            login.Owner = this;
+            login.ShowDialog();
+        }
     }
 }

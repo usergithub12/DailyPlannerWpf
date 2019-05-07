@@ -44,7 +44,6 @@ namespace WpfDailyPlanner
                     Service1Client client = new Service1Client();
                     foreach (var item in client.GetTasksFromGroup(cb_group.Text))
                     {
-
                         lb_tasks.Items.Add(item.Name);
                     }
                 }
@@ -61,7 +60,7 @@ namespace WpfDailyPlanner
 
         private void Lb_tasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(lb_tasks.SelectedIndex!=-1)
+            if (lb_tasks.SelectedIndex != -1)
             {
                 tb_TaskName.Text = lb_tasks.SelectedItem.ToString();
             }

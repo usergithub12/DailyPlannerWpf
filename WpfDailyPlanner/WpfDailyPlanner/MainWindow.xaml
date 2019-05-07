@@ -5,16 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDailyPlanner"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Background="Gray">
-
-        <StackPanel >
-            <Label >Login:</Label>
-            <TextBox Name="tb_login" ></TextBox>
-            <Label >Password:</Label>
-            <TextBox Name="tb_password" ></TextBox>
-            <Button Grid.Row="4" Name="btn_signin">Sign in</Button>
-            <Button Grid.Row="5" Name="btn_signup">Sign up</Button>
-        </StackPanel>
+        Title="MainWindow" Height="450" Width="800"
+          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="15"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid  Background="#333">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--<Rectangle Grid.Row="1" Fill="Chocolate" />-->
+        <Label  Foreground="White" Grid.Row="1" FontFamily="Comic Sans MS" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center">Daily Planner</Label>
+     
+        <Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click">Continue</Button>
     </Grid>
 </Window>

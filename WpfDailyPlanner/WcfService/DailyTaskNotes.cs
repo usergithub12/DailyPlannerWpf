@@ -23,6 +23,8 @@ namespace WcfService
         [DataMember]
         public string Location { get; set; }
         [DataMember]
+        public bool IsDeleted { get; set; }
+        [DataMember]
         public virtual Group Group { get; set; }
 
     }

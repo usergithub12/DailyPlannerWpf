@@ -14,6 +14,7 @@
   <xs:complexType name="Group">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDeleted" type="xs:boolean" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Tasks" nillable="true" type="tns:ArrayOfDailyTaskNotes" />
     </xs:sequence>
@@ -31,6 +32,7 @@
       <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Group" nillable="true" type="tns:Group" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDeleted" type="xs:boolean" />
       <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />

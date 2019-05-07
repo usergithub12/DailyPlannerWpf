@@ -102,6 +102,8 @@ namespace WcfService
             DailyPlannerDB dB= new DailyPlannerDB();
             DailyTaskNotes dailyTask = dB.Tasks.Where(t => t.Name == taskname).FirstOrDefault();
             dB.Tasks.Remove(dailyTask);
+            dailyTask.IsDeleted = true;
+
             dB.SaveChanges();
         }
 
@@ -109,7 +111,11 @@ namespace WcfService
         {
             DailyPlannerDB dB = new DailyPlannerDB();
             Group group = dB.Groups.Where(t => t.Name == groupname).FirstOrDefault();
-            dB.Groups.Remove(group);
+            group.IsDeleted = true;
+            foreach (var item in dB.Tasks.Where(q=>q.Group.Name==groupname))
+            {
+                item.IsDeleted = true;
+            }
             dB.SaveChanges();
         }
     }
