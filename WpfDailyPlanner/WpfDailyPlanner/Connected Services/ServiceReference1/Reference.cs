@@ -38,6 +38,9 @@ namespace WpfDailyPlanner.ServiceReference1 {
         private string PasswordConfirmationField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhotoPathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TelephoneField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -111,6 +114,19 @@ namespace WpfDailyPlanner.ServiceReference1 {
                 if ((object.ReferenceEquals(this.PasswordConfirmationField, value) != true)) {
                     this.PasswordConfirmationField = value;
                     this.RaisePropertyChanged("PasswordConfirmation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PhotoPath {
+            get {
+                return this.PhotoPathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhotoPathField, value) != true)) {
+                    this.PhotoPathField = value;
+                    this.RaisePropertyChanged("PhotoPath");
                 }
             }
         }

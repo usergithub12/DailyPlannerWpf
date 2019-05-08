@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace WpfDailyPlanner
         public Registration()
         {
             InitializeComponent();
+           
+
         }
         private void Btn_confirm_Click(object sender, RoutedEventArgs e)
         {
@@ -105,17 +108,30 @@ namespace WpfDailyPlanner
             u.PasswordConfirmation = tb_conf_password.Password;
             u.Telephone = tb_telephone.Text;
             u.Email = tb_email.Text;
-
+            u.PhotoPath = tb_photopath.Text;
             client.GetUser(u);
-          
+
         }
 
         private void Btn_reset_Click(object sender, RoutedEventArgs e)
         {
-            //tb_telephone.Text = String.Empty;
-            //tb_password.Text = String.Empty;
-            ////tb_login.Text = String.Empty;
-            //tb_email.Text = String.Empty;
+            tb_telephone.Text = String.Empty;
+            tb_password.Password = String.Empty;
+            tb_conf_password.Password = String.Empty;
+            tb_login.Text = String.Empty;
+            tb_email.Text = String.Empty;
+            tb_photopath.Text = String.Empty;
+            gd_img.Visibility = Visibility.Collapsed;
+        }
+
+        private void Btn_image_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+            file.ShowDialog();
+            gd_img.Visibility = Visibility.Visible;
+            this.UpdateLayout();
+            tb_photopath.Text = file.FileName;
+            user_img.ImageSource = new BitmapImage(new Uri(tb_photopath.Text)); 
         }
     }
 }

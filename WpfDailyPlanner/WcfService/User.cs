@@ -22,6 +22,8 @@ namespace WcfService
         public string Email { get; set; }
         [DataMember]
         public string Telephone { get; set; }
+        [DataMember]
+        public string PhotoPath { get; set; }
 
     }
 }
