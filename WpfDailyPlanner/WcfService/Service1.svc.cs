@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Data.Entity;
 
 namespace WcfService
 {
@@ -87,7 +88,7 @@ namespace WcfService
             DailyPlannerDB dB = new DailyPlannerDB();
             dB.Configuration.ProxyCreationEnabled = false;
             List<DailyTaskNotes> temp = new List<DailyTaskNotes>();
-            foreach (var item in dB.Tasks)
+            foreach (var item in dB.Tasks.Include(c => c.Group))
             {
                 if(DateTime.Parse(item.StartDate.ToShortDateString())==date)
                 {

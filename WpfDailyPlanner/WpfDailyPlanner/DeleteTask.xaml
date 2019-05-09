@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDailyPlanner"
         mc:Ignorable="d"
-        Title="DeleteTask" Height="450" Width="800"
+        Title="DeleteTask" Height="264.705" Width="608.404"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         WindowStartupLocation="CenterOwner"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -27,8 +27,8 @@
   IsEditable="True"
   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                 </ComboBox>
+                <ListBox  Name="lb_tasks" SelectionChanged="Lb_tasks_SelectionChanged"></ListBox>
                 <Button Name="btn_confirm" Click="Btn_confirm_Click" >Confirm</Button>
-                <ListBox Name="lb_tasks" SelectionChanged="Lb_tasks_SelectionChanged"> </ListBox>
             </StackPanel>
         </GroupBox>
     </Grid>

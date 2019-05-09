@@ -42,7 +42,7 @@ namespace WpfDailyPlanner
                 if (!String.IsNullOrEmpty(cb_group.Text))
                 {
                     Service1Client client = new Service1Client();
-                    foreach (var item in client.GetTasksFromGroup(cb_group.Text))
+                    foreach (var item in client.GetTasksFromGroup(cb_group.SelectedItem.ToString()))
                     {
                         lb_tasks.Items.Add(item.Name);
                     }

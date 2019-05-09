@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,8 +44,11 @@ namespace WpfDailyPlanner
             dailyTask.Name = tb_taskname.Text;
             dailyTask.Location = tb_location.Text;
             dailyTask.IsDeleted = false;
-            dailyTask.StartDate = Convert.ToDateTime(dp_start.Text + " " + Convert.ToDateTime(tp_start.Text).ToLongTimeString());
-            dailyTask.EndDate = Convert.ToDateTime(dp_end.Text + " " + Convert.ToDateTime(tp_end.Text).ToLongTimeString());
+            DateTimeFormatInfo dateFormatProvider = new DateTimeFormatInfo();
+            dateFormatProvider.ShortDatePattern = "dd/MM/yyyy";
+            dailyTask.StartDate = DateTime.Parse(dp_start.Text + " " + Convert.ToDateTime(tp_start.Text).ToLongTimeString(), dateFormatProvider);
+            dailyTask.EndDate = DateTime.Parse(dp_end.Text + " " + Convert.ToDateTime(tp_end.Text).ToLongTimeString(), dateFormatProvider);
+            //dailyTask.EndDate = Convert.ToDateTime(dp_end.Text + " " + Convert.ToDateTime(tp_end.Text).ToLongTimeString());
 
             if (service1Client.GetGroupbyName(cb_group.Text) != null)
             {
@@ -68,20 +72,22 @@ namespace WpfDailyPlanner
         private void Cb_group_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             st_notes.Children.Clear();
-            TextBlock textBlock = new TextBlock();
-            textBlock.Text = "Task List";
-            textBlock.FontSize = 16;
-            textBlock.FontWeight = FontWeights.Bold;
-            Thickness margin = new Thickness();
-            margin.Left = 16;
-            margin.Top = 16;
-            margin.Right = 12;
-            margin.Bottom = 8;
-            textBlock.Margin = margin;
-
-            st_notes.Children.Add(textBlock);
             if (cb_group.SelectedIndex != -1)
             {
+             
+                TextBlock textBlock = new TextBlock();
+                textBlock.Text = "Task List";
+                textBlock.FontSize = 16;
+                textBlock.FontWeight = FontWeights.Bold;
+                Thickness margin = new Thickness();
+                margin.Left = 16;
+                margin.Top = 16;
+                margin.Right = 12;
+                margin.Bottom = 8;
+                textBlock.Margin = margin;
+
+                st_notes.Children.Add(textBlock);
+
 
                 if (!String.IsNullOrEmpty(cb_group.Text))
                 {
@@ -92,7 +98,7 @@ namespace WpfDailyPlanner
                     margincb.Top = 4;
                     margincb.Right = 16;
                     margincb.Bottom = 0;
-                    foreach (var item in client.GetTasksFromGroup(cb_group.Text))
+                    foreach (var item in client.GetTasksFromGroup(cb_group.SelectedItem.ToString()))
                     {
                         if (!item.IsDeleted)
                         {
@@ -154,7 +160,10 @@ namespace WpfDailyPlanner
                 {
                     if (!item.IsDeleted)
                     {
-                        lb_showtasks.Items.Add($" Name: {item.Name}" + "\n" + $" Group: {item.Group}" + "\n" + $" Description: {item.Description}" + "\n" + $" StartDate: {item.StartDate} " + "\n" + $" EndDAte: {item.EndDate} " + "\n" + $" Location: {item.Location}");
+                        if (item.Group != null)
+                        {
+                            lb_showtasks.Items.Add($" Name: {item.Name}" + "\n" + $" Group: {item.Group.Name}" + "\n" + $" Description: {item.Description}" + "\n" + $" StartDate: {item.StartDate} " + "\n" + $" EndDAte: {item.EndDate} " + "\n" + $" Location: {item.Location}");
+                        }
                     }
                 }
 

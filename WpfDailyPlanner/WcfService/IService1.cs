@@ -36,6 +36,8 @@ namespace WcfService
         void DeleteTaskByName(string taskname);
         [OperationContract]
         void DeleteGroupByName(string groupname);
+
+        //Group GetGroupbyId()
     }
 
 

@@ -85,7 +85,7 @@
   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
   Padding="8">
                 <StackPanel Name="st_notes">
-
+                    <materialDesign:PackIcon Kind="Bookmark"></materialDesign:PackIcon>
 
                 </StackPanel>
             </materialDesign:Card>
