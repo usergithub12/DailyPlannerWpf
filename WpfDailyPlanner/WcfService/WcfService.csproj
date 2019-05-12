@@ -74,14 +74,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DailyPlannerDB.cs" />
-    <Compile Include="Group.cs" />
+    <Compile Include="ExceptionsFault\TaskAllFieldNotEmptyExceptionFault.cs" />
+    <Compile Include="ExceptionsFault\EmailFormatExceptionFault.cs" />
+    <Compile Include="ExceptionsFault\EmptyCyrilicLoginExceptionFault.cs" />
+    <Compile Include="ExceptionsFault\MyException.cs" />
+    <Compile Include="ExceptionsFault\PasswordConfirmationExceptionFault.cs" />
+    <Compile Include="ExceptionsFault\PasswordEqualsInDataBaseExceptionFault.cs" />
+    <Compile Include="ExceptionsFault\PasswordIndexOutOfRangeExceptionFault.cs" />
+    <Compile Include="ExceptionsFault\PasswordSpecificCharactersExceptionFault.cs" />
+    <Compile Include="ExceptionsFault\PhoneFormatExceptionFault.cs" />
+    <Compile Include="Exceptions\TaskAllFieldNotEmptyException.cs" />
+    <Compile Include="Exceptions\EmailFormatException.cs" />
+    <Compile Include="Exceptions\EmptyCyrilicLoginException.cs" />
+    <Compile Include="Exceptions\PasswordConfirmationException.cs" />
+    <Compile Include="Exceptions\PasswordEqualsInDataBaseException.cs" />
+    <Compile Include="Exceptions\PasswordIndexOutOfRangeException.cs" />
+    <Compile Include="Exceptions\PasswordSpecificCharactersException.cs" />
+    <Compile Include="Exceptions\PhoneFormatException.cs" />
+    <Compile Include="Exceptions\UserExistsInDatabaseException.cs" />
+    <Compile Include="Models\Group.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
     <Compile Include="IService1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DailyTaskNotes.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Models\DailyTaskNotes.cs" />
+    <Compile Include="Models\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,88 +30,70 @@ namespace WpfDailyPlanner
         }
         private void Btn_confirm_Click(object sender, RoutedEventArgs e)
         {
-            //Service1Client client = new Service1Client();
-            //try
-            //{
 
-            //    User user = new User();
-            //    user.Telephone = tb_telephone.Text;
-            //    user.Password = tb_password.Text;
-            //    user.PasswordConfirmation = tb_conf_password.Text;
-            //    user.Login = tb_login.Text;
-            //    user.Email = tb_email.Text;
+            try
+            {
 
+             
+                Service1Client client = new Service1Client();
+                User u = new User();
+                u.Login = tb_login.Text;
+                u.Password = tb_password.Password;
+                u.PasswordConfirmation = tb_conf_password.Password;
+                u.Telephone = tb_telephone.Text;
+                u.Email = tb_email.Text;
+                u.PhotoPath = tb_photopath.Text;
+                client.GetUser(u);
 
-            //    client.GetUserforValidation(user);
+                this.Close();
+            }
 
-            //    //LoginForm loginForm = new LoginForm();
+            catch (FaultException<EmptyCyrilicLoginExceptionFault> err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
+            catch (FaultException<EmailFormatExceptionFault> err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
+            catch (FaultException<PasswordConfirmationExceptionFault> err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
+            catch (FaultException<PasswordIndexOutOfRangeExceptionFault> err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
+            catch (FaultException<PasswordSpecificCharactersExceptionFault> err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
+            catch (FaultException<PhoneFormatExceptionFault> err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
 
-            //    //loginForm.ShowDialog();
-            //    //user.Login = loginForm.tb_login.Text;
-            //    //user.Password = loginForm.tb_password.Text;
-            //}
+            catch (FaultException fe)
+            {
+                MessageBox.Show($"Halepa - {fe}");
+            }
+            catch (NullReferenceException err)
+            {
+                MessageBox.Show("Htos ne vudiluv pamjati");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Useless block");
 
-            //catch (FaultException<EmptyCyrilicLoginExceptionFault> err)
-            //{
-            //    MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
-            //    MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
-            //}
-            //catch (FaultException<EmailFormatExceptionFault> err)
-            //{
-            //    MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
-            //    MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
-            //}
-            //catch (FaultException<PasswordConfirmationExceptionFault> err)
-            //{
-            //    MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
-            //    MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
-            //}
-            //catch (FaultException<PasswordIndexOutOfRangeExceptionFault> err)
-            //{
-            //    MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
-            //    MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
-            //}
-            //catch (FaultException<PasswordSpecificCharactersExceptionFault> err)
-            //{
-            //    MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
-            //    MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
-            //}
-            //catch (FaultException<PhoneFormatExceptionFault> err)
-            //{
-            //    MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
-            //    MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
-            //}
+            }
 
-            //catch (FaultException fe)
-            //{
-            //    MessageBox.Show($"Halepa - {fe}");
-            //}
-            //catch (NullReferenceException err)
-            //{
-            //    MessageBox.Show("Htos ne vudiluv pamjati");
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Useless block");
-
-            //}
-
-            //foreach (var item in st_checkboxes.Children.OfType<CheckBox>())
-            //{
-            //    item.IsChecked = true;
-            //}
-
-            Service1Client client = new Service1Client();
-            User u = new User();
-            u.Login = tb_login.Text;
-            u.Password = tb_password.Password;
-            u.PasswordConfirmation = tb_conf_password.Password;
-            u.Telephone = tb_telephone.Text;
-            u.Email = tb_email.Text;
-            u.PhotoPath = tb_photopath.Text;
-            client.GetUser(u);
-
-              this.Close();
+           
         }
 
         private void Btn_reset_Click(object sender, RoutedEventArgs e)

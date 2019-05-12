@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using WcfService.ExceptionsFault;
 
 namespace WcfService
 {
@@ -40,7 +41,22 @@ namespace WcfService
         void UpdateTask(DailyTaskNotes task, string taskname);
         [OperationContract]
         DailyTaskNotes GetTaskByName(string taskname);
-        //Group GetGroupbyId()
+
+        [OperationContract]
+        [FaultContract(typeof(EmailFormatExceptionFault))]
+        [FaultContract(typeof(EmptyCyrilicLoginExceptionFault))]
+        [FaultContract(typeof(PasswordConfirmationExceptionFault))]
+        [FaultContract(typeof(PasswordIndexOutOfRangeExceptionFault))]
+        [FaultContract(typeof(PasswordSpecificCharactersExceptionFault))]
+        [FaultContract(typeof(PhoneFormatExceptionFault))]
+        void GetUserforValidation(User user);
+
+
+        [OperationContract]
+        [FaultContract(typeof(MyExceptionFault))]
+        [FaultContract(typeof(PasswordEqualsInDataBaseExceptionFault))]
+        void GetLoginUserforValidation(string login, string password);
+
     }
 
 

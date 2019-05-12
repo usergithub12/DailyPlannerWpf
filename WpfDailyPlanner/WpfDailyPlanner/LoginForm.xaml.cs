@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,52 +27,49 @@ namespace WpfDailyPlanner
         }
         private void Btn_sign_in_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    Service1Client service1Client = new Service1Client();
+            try
+            {
+                Service1Client client = new Service1Client();
+                var u = client.GetUserbyName(tb_login.Text);
 
-            //    service1Client.GetLoginUserforValidation(tb_login.Text, tb_password.Text);
-            //}
-            //catch (FaultException<MyExceptionFault> err)
-            //{
-            //    MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
-            //    MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
-            //}
-            //catch (FaultException<PasswordEqualsInDataBaseExceptionFault> err)
-            //{
-            //    MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
-            //    MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
-            //}
-            //catch (FaultException fe)
-            //{
-            //    MessageBox.Show($"Halepa - {fe}");
-            //}
-            //catch (NullReferenceException err)
-            //{
-            //    MessageBox.Show("Htos ne vudiluv pamjati");
-            //}
+                DailyTask task = new DailyTask();
+                task.tb_username.Text = tb_login.Text;
+                task.tb_updatelogin.Text = tb_login.Text;
+                task.tb_updatepassword.Text = tb_password.Password;
+                if (!String.IsNullOrEmpty(u.PhotoPath))
+                {
+                    task.user_img.ImageSource = new BitmapImage(new Uri(u.PhotoPath));
+                }
+
+                this.Close();
+                task.ShowDialog();
+            }
+            catch (FaultException<MyExceptionFault> err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
+            catch (FaultException<PasswordEqualsInDataBaseExceptionFault> err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
+            catch (FaultException fe)
+            {
+                MessageBox.Show($"Halepa - {fe}");
+            }
+            catch (NullReferenceException err)
+            {
+                MessageBox.Show("Htos ne vudiluv pamjati");
+            }
             //catch (Exception)
             //{
             //    MessageBox.Show("Useless block");
 
             //}
 
-            //MainWindow mainWindow = new MainWindow();
-            //mainWindow.ShowDialog();
-            Service1Client client = new Service1Client();
-            var u=client.GetUserbyName(tb_login.Text);
 
-            DailyTask task = new DailyTask();
-            task.tb_username.Text = tb_login.Text;
-            task.tb_updatelogin.Text = tb_login.Text;
-            task.tb_updatepassword.Text = tb_password.Password;
-            if (!String.IsNullOrEmpty(u.PhotoPath))
-            {
-                task.user_img.ImageSource= new BitmapImage(new Uri(u.PhotoPath));
-            }
-           
-            this.Close();
-            task.ShowDialog();
+          
         }
 
         private void Btn_sign_up_Click(object sender, RoutedEventArgs e)

@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:62995/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:62995/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:62995/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfService" />
+      <xsd:import schemaLocation="http://localhost:62995/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WcfService.ExceptionsFault" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService1_GetUser_InputMessage">
@@ -91,6 +92,42 @@
   <wsdl:message name="IService1_GetTaskByName_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTaskByNameResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetUserforValidation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserforValidation" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserforValidation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserforValidationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserforValidation_EmailFormatExceptionFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/WcfService.ExceptionsFault" name="detail" element="q1:EmailFormatExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserforValidation_EmptyCyrilicLoginExceptionFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/WcfService.ExceptionsFault" name="detail" element="q2:EmptyCyrilicLoginExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserforValidation_PasswordConfirmationExceptionFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/WcfService.ExceptionsFault" name="detail" element="q3:PasswordConfirmationExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserforValidation_PasswordIndexOutOfRangeExceptionFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/WcfService.ExceptionsFault" name="detail" element="q4:PasswordIndexOutOfRangeExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserforValidation_PasswordSpecificCharactersExceptionFaultFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/WcfService.ExceptionsFault" name="detail" element="q5:PasswordSpecificCharactersExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserforValidation_PhoneFormatExceptionFaultFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/WcfService.ExceptionsFault" name="detail" element="q6:PhoneFormatExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLoginUserforValidation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoginUserforValidation" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLoginUserforValidation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoginUserforValidationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLoginUserforValidation_MyExceptionFaultFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/WcfService" name="detail" element="q7:MyExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLoginUserforValidation_PasswordEqualsInDataBaseExceptionFaultFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/WcfService.ExceptionsFault" name="detail" element="q8:PasswordEqualsInDataBaseExceptionFault" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUser" message="tns:IService1_GetUser_InputMessage" />
@@ -147,6 +184,22 @@
     <wsdl:operation name="GetTaskByName">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTaskByName" message="tns:IService1_GetTaskByName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTaskByNameResponse" message="tns:IService1_GetTaskByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserforValidation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUserforValidation" message="tns:IService1_GetUserforValidation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUserforValidationResponse" message="tns:IService1_GetUserforValidation_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService1/GetUserforValidationEmailFormatExceptionFaultFault" name="EmailFormatExceptionFaultFault" message="tns:IService1_GetUserforValidation_EmailFormatExceptionFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService1/GetUserforValidationEmptyCyrilicLoginExceptionFaultFault" name="EmptyCyrilicLoginExceptionFaultFault" message="tns:IService1_GetUserforValidation_EmptyCyrilicLoginExceptionFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService1/GetUserforValidationPasswordConfirmationExceptionFaultFault" name="PasswordConfirmationExceptionFaultFault" message="tns:IService1_GetUserforValidation_PasswordConfirmationExceptionFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService1/GetUserforValidationPasswordIndexOutOfRangeExceptionFaultFault" name="PasswordIndexOutOfRangeExceptionFaultFault" message="tns:IService1_GetUserforValidation_PasswordIndexOutOfRangeExceptionFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService1/GetUserforValidationPasswordSpecificCharactersExceptionFaultFault" name="PasswordSpecificCharactersExceptionFaultFault" message="tns:IService1_GetUserforValidation_PasswordSpecificCharactersExceptionFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService1/GetUserforValidationPhoneFormatExceptionFaultFault" name="PhoneFormatExceptionFaultFault" message="tns:IService1_GetUserforValidation_PhoneFormatExceptionFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginUserforValidation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetLoginUserforValidation" message="tns:IService1_GetLoginUserforValidation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetLoginUserforValidationResponse" message="tns:IService1_GetLoginUserforValidation_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService1/GetLoginUserforValidationMyExceptionFaultFault" name="MyExceptionFaultFault" message="tns:IService1_GetLoginUserforValidation_MyExceptionFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService1/GetLoginUserforValidationPasswordEqualsInDataBaseExceptionFaultFault" name="PasswordEqualsInDataBaseExceptionFaultFault" message="tns:IService1_GetLoginUserforValidation_PasswordEqualsInDataBaseExceptionFaultFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -276,6 +329,48 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserforValidation">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetUserforValidation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="EmailFormatExceptionFaultFault">
+        <soap:fault use="literal" name="EmailFormatExceptionFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="EmptyCyrilicLoginExceptionFaultFault">
+        <soap:fault use="literal" name="EmptyCyrilicLoginExceptionFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="PasswordConfirmationExceptionFaultFault">
+        <soap:fault use="literal" name="PasswordConfirmationExceptionFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="PasswordIndexOutOfRangeExceptionFaultFault">
+        <soap:fault use="literal" name="PasswordIndexOutOfRangeExceptionFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="PasswordSpecificCharactersExceptionFaultFault">
+        <soap:fault use="literal" name="PasswordSpecificCharactersExceptionFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="PhoneFormatExceptionFaultFault">
+        <soap:fault use="literal" name="PhoneFormatExceptionFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginUserforValidation">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetLoginUserforValidation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MyExceptionFaultFault">
+        <soap:fault use="literal" name="MyExceptionFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="PasswordEqualsInDataBaseExceptionFaultFault">
+        <soap:fault use="literal" name="PasswordEqualsInDataBaseExceptionFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="Service1">

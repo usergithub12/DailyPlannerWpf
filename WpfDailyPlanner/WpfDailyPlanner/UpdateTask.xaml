@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDailyPlanner"
         mc:Ignorable="d"
-        Title="UpdateTask" Height="450" Width="800" 
+        Title="UpdateTask" Height="324.519" Width="455.288" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -57,7 +57,7 @@
 
                 <DatePicker   Language="uk" Grid.Row="1" Grid.Column="1" Name="dp_start"></DatePicker>
                 <DatePicker   Language="uk" Grid.Row="3" Grid.Column="1" Name="dp_end"></DatePicker>
-               
+
             </Grid>
             <Button Name="btn_saveTask" Click="Btn_saveTask_Click">Save</Button>
         </StackPanel>
