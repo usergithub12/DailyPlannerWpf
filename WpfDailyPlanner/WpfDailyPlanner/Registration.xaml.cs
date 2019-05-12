@@ -99,7 +99,6 @@ namespace WpfDailyPlanner
             //{
             //    item.IsChecked = true;
             //}
-            //  this.Close();
 
             Service1Client client = new Service1Client();
             User u = new User();
@@ -111,6 +110,7 @@ namespace WpfDailyPlanner
             u.PhotoPath = tb_photopath.Text;
             client.GetUser(u);
 
+              this.Close();
         }
 
         private void Btn_reset_Click(object sender, RoutedEventArgs e)
@@ -131,7 +131,10 @@ namespace WpfDailyPlanner
             gd_img.Visibility = Visibility.Visible;
             this.UpdateLayout();
             tb_photopath.Text = file.FileName;
-            user_img.ImageSource = new BitmapImage(new Uri(tb_photopath.Text)); 
+            if (!String.IsNullOrEmpty(tb_photopath.Text))
+            {
+                user_img.ImageSource = new BitmapImage(new Uri(tb_photopath.Text));
+            }
         }
     }
 }

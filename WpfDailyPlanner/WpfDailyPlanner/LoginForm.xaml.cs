@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfDailyPlanner.ServiceReference1;
 
 namespace WpfDailyPlanner
 {
@@ -57,12 +58,18 @@ namespace WpfDailyPlanner
 
             //MainWindow mainWindow = new MainWindow();
             //mainWindow.ShowDialog();
+            Service1Client client = new Service1Client();
+            var u=client.GetUserbyName(tb_login.Text);
 
             DailyTask task = new DailyTask();
             task.tb_username.Text = tb_login.Text;
             task.tb_updatelogin.Text = tb_login.Text;
             task.tb_updatepassword.Text = tb_password.Password;
-        
+            if (!String.IsNullOrEmpty(u.PhotoPath))
+            {
+                task.user_img.ImageSource= new BitmapImage(new Uri(u.PhotoPath));
+            }
+           
             this.Close();
             task.ShowDialog();
         }

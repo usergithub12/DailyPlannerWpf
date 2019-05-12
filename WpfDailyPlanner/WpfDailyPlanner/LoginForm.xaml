@@ -38,7 +38,7 @@
             <PasswordBox Grid.Row="1"
   x:Name="tb_password"
   materialDesign:HintAssist.Hint="Password" Margin="0,0,0,10" />
-            <Button Grid.Row="2" Name="btn_sign_in" Click="Btn_sign_in_Click">Sign In</Button>
+            <Button IsDefault="True" Grid.Row="2" Name="btn_sign_in" Click="Btn_sign_in_Click">Sign In</Button>
             <Button Grid.Row="3" Name="btn_sign_up" Click="Btn_sign_up_Click">Sign Up</Button>
         </Grid>
         <StackPanel>

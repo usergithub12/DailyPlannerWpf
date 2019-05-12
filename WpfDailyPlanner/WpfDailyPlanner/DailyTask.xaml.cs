@@ -24,14 +24,17 @@ namespace WpfDailyPlanner
         public DailyTask()
         {
             InitializeComponent();
-
+         
             Service1Client client = new Service1Client();
 
             foreach (var item in client.GetGroups())
             {
-                if (item.Name != null)
+                if (!item.IsDeleted)
                 {
-                    cb_group.Items.Add(item.Name.ToString());
+                    if (item.Name != null)
+                    {
+                        cb_group.Items.Add(item.Name.ToString());
+                    }
                 }
             }
         }
@@ -52,7 +55,10 @@ namespace WpfDailyPlanner
 
             if (service1Client.GetGroupbyName(cb_group.Text) != null)
             {
-                dailyTask.Group = service1Client.GetGroupbyName(cb_group.Text);
+                if (!service1Client.GetGroupbyName(cb_group.Text).IsDeleted)
+                {
+                    dailyTask.Group = service1Client.GetGroupbyName(cb_group.Text);
+                }
             }
             service1Client.GetTaskToAdd(dailyTask);
         }
@@ -71,48 +77,47 @@ namespace WpfDailyPlanner
 
         private void Cb_group_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            st_notes.Children.Clear();
-            if (cb_group.SelectedIndex != -1)
-            {
-             
-                TextBlock textBlock = new TextBlock();
-                textBlock.Text = "Task List";
-                textBlock.FontSize = 16;
-                textBlock.FontWeight = FontWeights.Bold;
-                Thickness margin = new Thickness();
-                margin.Left = 16;
-                margin.Top = 16;
-                margin.Right = 12;
-                margin.Bottom = 8;
-                textBlock.Margin = margin;
+            //st_notes.Children.Clear();
+            //if (cb_group.SelectedIndex != -1)
+            //{
+            //    TextBlock textBlock = new TextBlock();
+            //    textBlock.Text = "Task List";
+            //    textBlock.FontSize = 16;
+            //    textBlock.FontWeight = FontWeights.Bold;
+            //    Thickness margin = new Thickness();
+            //    margin.Left = 16;
+            //    margin.Top = 16;
+            //    margin.Right = 12;
+            //    margin.Bottom = 8;
+            //    textBlock.Margin = margin;
 
-                st_notes.Children.Add(textBlock);
+            //    st_notes.Children.Add(textBlock);
 
 
-                if (!String.IsNullOrEmpty(cb_group.Text))
-                {
-                    Service1Client client = new Service1Client();
-                    Thickness margincb = new Thickness();
+            //    if (!String.IsNullOrEmpty(cb_group.Text))
+            //    {
+            //        Service1Client client = new Service1Client();
+            //        Thickness margincb = new Thickness();
 
-                    margincb.Left = 16;
-                    margincb.Top = 4;
-                    margincb.Right = 16;
-                    margincb.Bottom = 0;
-                    foreach (var item in client.GetTasksFromGroup(cb_group.SelectedItem.ToString()))
-                    {
-                        if (!item.IsDeleted)
-                        {
-                            CheckBox checkBox = new CheckBox();
+            //        margincb.Left = 16;
+            //        margincb.Top = 4;
+            //        margincb.Right = 16;
+            //        margincb.Bottom = 0;
+            //        foreach (var item in client.GetTasksFromGroup(cb_group.SelectedItem.ToString()))
+            //        {
+            //            if (!item.IsDeleted)
+            //            {
+            //                CheckBox checkBox = new CheckBox();
 
-                            checkBox.Margin = margincb;
+            //                checkBox.Margin = margincb;
 
-                            checkBox.Content = item.Name;
-                            st_notes.Children.Add(checkBox);
-                        }
-                    }
-                }
+            //                checkBox.Content = item.Name;
+            //                st_notes.Children.Add(checkBox);
+            //            }
+            //        }
+            //    }
 
-            }
+            //}
         }
 
         private void Btn_addgroup_Click(object sender, RoutedEventArgs e)
@@ -158,11 +163,15 @@ namespace WpfDailyPlanner
                 Service1Client client = new Service1Client();
                 foreach (var item in client.GetTasksByDate(DateTime.Parse(cl_datepick.SelectedDate.ToString())))
                 {
-                    if (!item.IsDeleted)
+                    if (client.GetTasksByDate(DateTime.Parse(cl_datepick.SelectedDate.ToString())).Count() > 0)
                     {
-                        if (item.Group != null)
+                        lb_showtasks.Visibility = Visibility.Visible;
+                        if (!item.IsDeleted)
                         {
-                            lb_showtasks.Items.Add($" Name: {item.Name}" + "\n" + $" Group: {item.Group.Name}" + "\n" + $" Description: {item.Description}" + "\n" + $" StartDate: {item.StartDate} " + "\n" + $" EndDAte: {item.EndDate} " + "\n" + $" Location: {item.Location}");
+                            if (item.Group != null)
+                            {
+                                lb_showtasks.Items.Add($" Name: {item.Name}" + "\n" + $" Group: {item.Group.Name}" + "\n" + $" Description: {item.Description}" + "\n" + $" StartDate: {item.StartDate} " + "\n" + $" EndDAte: {item.EndDate} " + "\n" + $" Location: {item.Location}");
+                            }
                         }
                     }
                 }
@@ -181,6 +190,11 @@ namespace WpfDailyPlanner
             }
             deleteGroup.ShowDialog();
             cb_group.Items.Refresh();
+        }
+
+        private void Btn_exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

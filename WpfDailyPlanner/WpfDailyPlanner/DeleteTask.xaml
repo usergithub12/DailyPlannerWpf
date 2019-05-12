@@ -28,7 +28,7 @@
   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                 </ComboBox>
                 <ListBox  Name="lb_tasks" SelectionChanged="Lb_tasks_SelectionChanged"></ListBox>
-                <Button Name="btn_confirm" Click="Btn_confirm_Click" >Confirm</Button>
+                <Button  VerticalAlignment="Bottom" Name="btn_confirm" Click="Btn_confirm_Click" >Confirm</Button>
             </StackPanel>
         </GroupBox>
     </Grid>

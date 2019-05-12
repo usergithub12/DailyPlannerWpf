@@ -61,8 +61,11 @@ namespace WcfService
         public void GetGroupToAdd(Group group)
         {
             DailyPlannerDB dB = new DailyPlannerDB();
-            dB.Groups.Add(group);
-            dB.SaveChanges();
+            if (dB.Groups.FirstOrDefault(q => q.Name == group.Name) == null)
+            {
+                dB.Groups.Add(group);
+                dB.SaveChanges();
+            }
         }
 
         public User GetUserbyName(string login)
