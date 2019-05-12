@@ -31,12 +31,7 @@
                             <materialDesign:ColorZone
       
         VerticalAlignment="Stretch">
-                                <!--<materialDesign:PackIcon
-          Kind="AccountCircle"
-          Height="128"
-          Width="128"
-          VerticalAlignment="Center"
-          HorizontalAlignment="Center" />-->
+                                
                                 <Grid Width="210" Height="210"  Name="gd_img" >
                                     <Rectangle  RadiusX="250" RadiusY="250" >
                                         <Rectangle.Fill>
@@ -129,7 +124,7 @@
           Margin="5 12 5 4" Name="tb_updatephone">
 
                                 </TextBox>
-                                <Button  Name="btn_saveuser"  Grid.Row="4">Save</Button>
+                                <Button  Name="btn_saveuser" Click="Btn_saveuser_Click" Grid.Row="4">Save</Button>
                             </Grid>
                         </Grid>
                     </materialDesign:Flipper.BackContent>
@@ -144,7 +139,7 @@
 
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.15*"></RowDefinition>
+                    <RowDefinition Height="0.12*"></RowDefinition>
                     <RowDefinition ></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
@@ -197,10 +192,12 @@
 
                 <StackPanel Grid.Column="1"  Grid.Row="1">
                 <Label Background="{StaticResource PrimaryHueMidBrush}">Calendar</Label>
+                    
                 <Calendar  Margin="0" Padding="0" SelectedDatesChanged="Cl_datepick_SelectedDatesChanged" Name="cl_datepick" Language="uk"  />
                 </StackPanel>
-                <ListBox Background="Gray" Foreground="White" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="lb_showtasks" Visibility="Collapsed"></ListBox>
-                
+
+                <ListBox MouseDoubleClick="Lb_showtasks_MouseDoubleClick" Background="{DynamicResource SecondaryAccentForegroundBrush}" Foreground="White" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="lb_showtasks" Visibility="Collapsed"></ListBox>
+               
 <!--<materialDesign:Card Grid.Row="2" Grid.Column="1" 
   Background="{DynamicResource PrimaryHueDarkBrush}"
   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"

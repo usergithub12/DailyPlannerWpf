@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -24,7 +25,6 @@ namespace WpfDailyPlanner
         public DailyTask()
         {
             InitializeComponent();
-         
             Service1Client client = new Service1Client();
 
             foreach (var item in client.GetGroups())
@@ -39,6 +39,7 @@ namespace WpfDailyPlanner
             }
         }
 
+
         private void Btn_add_Click(object sender, RoutedEventArgs e)
         {
             Service1Client service1Client = new Service1Client();
@@ -51,7 +52,7 @@ namespace WpfDailyPlanner
             dateFormatProvider.ShortDatePattern = "dd/MM/yyyy";
             dailyTask.StartDate = DateTime.Parse(dp_start.Text + " " + Convert.ToDateTime(tp_start.Text).ToLongTimeString(), dateFormatProvider);
             dailyTask.EndDate = DateTime.Parse(dp_end.Text + " " + Convert.ToDateTime(tp_end.Text).ToLongTimeString(), dateFormatProvider);
-            //dailyTask.EndDate = Convert.ToDateTime(dp_end.Text + " " + Convert.ToDateTime(tp_end.Text).ToLongTimeString());
+
 
             if (service1Client.GetGroupbyName(cb_group.Text) != null)
             {
@@ -157,20 +158,34 @@ namespace WpfDailyPlanner
 
         private void Cl_datepick_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            lb_showtasks.Visibility = Visibility.Visible;
             lb_showtasks.Items.Clear();
             if (cl_datepick.SelectedDate != null)
             {
                 Service1Client client = new Service1Client();
+
                 foreach (var item in client.GetTasksByDate(DateTime.Parse(cl_datepick.SelectedDate.ToString())))
                 {
                     if (client.GetTasksByDate(DateTime.Parse(cl_datepick.SelectedDate.ToString())).Count() > 0)
                     {
-                        lb_showtasks.Visibility = Visibility.Visible;
+
                         if (!item.IsDeleted)
                         {
                             if (item.Group != null)
                             {
-                                lb_showtasks.Items.Add($" Name: {item.Name}" + "\n" + $" Group: {item.Group.Name}" + "\n" + $" Description: {item.Description}" + "\n" + $" StartDate: {item.StartDate} " + "\n" + $" EndDAte: {item.EndDate} " + "\n" + $" Location: {item.Location}");
+                                CheckBox checkBox = new CheckBox();
+                                Thickness margincb = new Thickness();
+                                margincb.Left = 16;
+                                margincb.Top = 4;
+                                margincb.Right = 16;
+                                margincb.Bottom = 0;
+                                checkBox.Margin = margincb;
+
+                                //checkBox.Content = $" Name: {item.Name}" + "\n" + $" Group: {item.Group.Name}" + "\n" + $" Description: {item.Description}" + "\n" + $" StartDate: {item.StartDate} " + "\n" + $" EndDAte: {item.EndDate} " + "\n" + $" Location: {item.Location}";
+                                checkBox.Content = item.Name;
+
+                                lb_showtasks.Items.Add(checkBox);
                             }
                         }
                     }
@@ -195,6 +210,14 @@ namespace WpfDailyPlanner
         private void Btn_exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Lb_showtasks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            UpdateTask updateTask = new UpdateTask();
+            var cb = lb_showtasks.SelectedValue as CheckBox;
+            updateTask.tb_taskname.Text = cb.Content.ToString();
+            updateTask.ShowDialog();
         }
     }
 }

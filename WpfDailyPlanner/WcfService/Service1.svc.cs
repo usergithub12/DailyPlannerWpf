@@ -20,7 +20,7 @@ namespace WcfService
                 plannerDB.SaveChanges();
             }
         }
-      
+
         public DailyTaskNotes[] GetTasks()
         {
             DailyPlannerDB dB = new DailyPlannerDB();
@@ -40,9 +40,9 @@ namespace WcfService
         public Group[] GetGroups()
         {
             DailyPlannerDB dB = new DailyPlannerDB();
-          
+
             return dB.Groups.ToArray();
-         
+
         }
 
         public DailyTaskNotes[] GetTasksFromGroup(string groupname)
@@ -74,16 +74,19 @@ namespace WcfService
             return dB.Users.Where(u => u.Login == login).First();
         }
 
-        public void UpdateUser(User user,string login)
+        public void UpdateUser(User user, string login)
         {
             DailyPlannerDB dB = new DailyPlannerDB();
-            var temp = dB.Users.Where(u => u.Login == login).First();
-            temp.Login = user.Login;
-            temp.Password = user.Password;
-            temp.Email = user.Email;
-            temp.Telephone = user.Telephone;
-            temp.PasswordConfirmation = user.PasswordConfirmation;
-            dB.SaveChanges();
+            var temp = dB.Users.SingleOrDefault(u => u.Login == login);
+            if (temp != null)
+            {
+                temp.Login = user.Login;
+                temp.Password = user.Password;
+                temp.Email = user.Email;
+                temp.Telephone = user.Telephone;
+                temp.PasswordConfirmation = user.PasswordConfirmation;
+                dB.SaveChanges();
+            }
         }
 
         public DailyTaskNotes[] GetTasksByDate(DateTime date)
@@ -93,17 +96,17 @@ namespace WcfService
             List<DailyTaskNotes> temp = new List<DailyTaskNotes>();
             foreach (var item in dB.Tasks.Include(c => c.Group))
             {
-                if(DateTime.Parse(item.StartDate.ToShortDateString())==date)
+                if (DateTime.Parse(item.StartDate.ToShortDateString()) == date)
                 {
                     temp.Add(item);
                 }
             }
-                    return temp.ToArray();
+            return temp.ToArray();
         }
 
         public void DeleteTaskByName(string taskname)
         {
-            DailyPlannerDB dB= new DailyPlannerDB();
+            DailyPlannerDB dB = new DailyPlannerDB();
             DailyTaskNotes dailyTask = dB.Tasks.Where(t => t.Name == taskname).FirstOrDefault();
             dB.Tasks.Remove(dailyTask);
             dailyTask.IsDeleted = true;
@@ -116,11 +119,32 @@ namespace WcfService
             DailyPlannerDB dB = new DailyPlannerDB();
             Group group = dB.Groups.Where(t => t.Name == groupname).FirstOrDefault();
             group.IsDeleted = true;
-            foreach (var item in dB.Tasks.Where(q=>q.Group.Name==groupname))
+            foreach (var item in dB.Tasks.Where(q => q.Group.Name == groupname))
             {
                 item.IsDeleted = true;
             }
             dB.SaveChanges();
+        }
+
+
+        public void UpdateTask(DailyTaskNotes task, string taskname)
+        {
+            DailyPlannerDB dB = new DailyPlannerDB();
+            var temp = dB.Tasks.Where(u => u.Name == taskname).First();
+            temp.Name = task.Name;
+            temp.Description = task.Description;
+            temp.Location = task.Location;
+            temp.Group = task.Group;
+            temp.StartDate = task.StartDate;
+            temp.EndDate = task.EndDate;
+            dB.SaveChanges();
+        }
+
+        public DailyTaskNotes GetTaskByName(string taskname)
+        {
+            DailyPlannerDB dB = new DailyPlannerDB();
+            dB.Configuration.ProxyCreationEnabled = false;
+            return dB.Tasks.FirstOrDefault(g => g.Name == taskname);
         }
     }
 }

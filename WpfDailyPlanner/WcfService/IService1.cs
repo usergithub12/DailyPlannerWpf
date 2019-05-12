@@ -36,7 +36,10 @@ namespace WcfService
         void DeleteTaskByName(string taskname);
         [OperationContract]
         void DeleteGroupByName(string groupname);
-
+        [OperationContract]
+        void UpdateTask(DailyTaskNotes task, string taskname);
+        [OperationContract]
+        DailyTaskNotes GetTaskByName(string taskname);
         //Group GetGroupbyId()
     }
 

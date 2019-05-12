@@ -479,6 +479,18 @@ namespace WpfDailyPlanner.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteGroupByName", ReplyAction="http://tempuri.org/IService1/DeleteGroupByNameResponse")]
         System.Threading.Tasks.Task DeleteGroupByNameAsync(string groupname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateTask", ReplyAction="http://tempuri.org/IService1/UpdateTaskResponse")]
+        void UpdateTask(WpfDailyPlanner.ServiceReference1.DailyTaskNotes task, string taskname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateTask", ReplyAction="http://tempuri.org/IService1/UpdateTaskResponse")]
+        System.Threading.Tasks.Task UpdateTaskAsync(WpfDailyPlanner.ServiceReference1.DailyTaskNotes task, string taskname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTaskByName", ReplyAction="http://tempuri.org/IService1/GetTaskByNameResponse")]
+        WpfDailyPlanner.ServiceReference1.DailyTaskNotes GetTaskByName(string taskname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTaskByName", ReplyAction="http://tempuri.org/IService1/GetTaskByNameResponse")]
+        System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes> GetTaskByNameAsync(string taskname);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -602,6 +614,22 @@ namespace WpfDailyPlanner.ServiceReference1 {
         
         public System.Threading.Tasks.Task DeleteGroupByNameAsync(string groupname) {
             return base.Channel.DeleteGroupByNameAsync(groupname);
+        }
+        
+        public void UpdateTask(WpfDailyPlanner.ServiceReference1.DailyTaskNotes task, string taskname) {
+            base.Channel.UpdateTask(task, taskname);
+        }
+        
+        public System.Threading.Tasks.Task UpdateTaskAsync(WpfDailyPlanner.ServiceReference1.DailyTaskNotes task, string taskname) {
+            return base.Channel.UpdateTaskAsync(task, taskname);
+        }
+        
+        public WpfDailyPlanner.ServiceReference1.DailyTaskNotes GetTaskByName(string taskname) {
+            return base.Channel.GetTaskByName(taskname);
+        }
+        
+        public System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes> GetTaskByNameAsync(string taskname) {
+            return base.Channel.GetTaskByNameAsync(taskname);
         }
     }
 }

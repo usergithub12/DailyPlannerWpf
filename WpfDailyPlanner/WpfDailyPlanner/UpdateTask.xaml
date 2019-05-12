@@ -1,0 +1,65 @@
+﻿<Window x:Class="WpfDailyPlanner.UpdateTask"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDailyPlanner"
+        mc:Ignorable="d"
+        Title="UpdateTask" Height="450" Width="800" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <StackPanel Grid.Row="1">
+            <Label Background="{StaticResource PrimaryHueMidBrush}" >Task</Label>
+            <TextBox
+  x:Name="tb_taskname"
+  materialDesign:HintAssist.Hint="Name" />
+            <ComboBox SelectionChanged="Cb_group_SelectionChanged"
+                    Name="cb_group" FontSize="15"
+  materialDesign:HintAssist.Hint="Group"
+  IsEditable="True"
+  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            </ComboBox>
+
+            <TextBox Name="tb_taskdescr"
+    TextWrapping="NoWrap"
+    VerticalAlignment="Stretch"
+    AcceptsReturn="True"
+    VerticalScrollBarVisibility="Visible"
+    SpellCheck.IsEnabled="True"
+    materialDesign:HintAssist.Hint="Description">
+            </TextBox>
+            <TextBox
+  x:Name="tb_location"
+  materialDesign:HintAssist.Hint="Location" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="0.2*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="0.2*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"  Grid.ColumnSpan="2" Background="{StaticResource PrimaryHueMidBrush}"   >From</Label>
+                <Label Grid.Row="2"   Grid.ColumnSpan="2"   Background="{StaticResource PrimaryHueMidBrush}" >To</Label>
+                <materialDesign:TimePicker  Grid.Row="1"  Name="tp_start" Is24Hours="True" Language="uk" ></materialDesign:TimePicker>
+                <materialDesign:TimePicker  Grid.Row="3"  Name="tp_end" Is24Hours="True" Language="uk" ></materialDesign:TimePicker>
+
+                <DatePicker   Language="uk" Grid.Row="1" Grid.Column="1" Name="dp_start"></DatePicker>
+                <DatePicker   Language="uk" Grid.Row="3" Grid.Column="1" Name="dp_end"></DatePicker>
+               
+            </Grid>
+            <Button Name="btn_saveTask" Click="Btn_saveTask_Click">Save</Button>
+        </StackPanel>
+    </Grid>
+</Window>
