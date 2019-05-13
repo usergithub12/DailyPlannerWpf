@@ -76,7 +76,7 @@ namespace WpfDailyPlanner
         {
             Registration registration = new Registration();
             registration.ShowDialog();
-
+           
         }
     }
 }

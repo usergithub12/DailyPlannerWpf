@@ -240,7 +240,7 @@
                             <materialDesign:PackIcon Kind="Minus" />
                         </Button>
                         <Separator />
-                        <Button
+                        <Button  
       ToolTip="Exit" Name="btn_exit" Click="Btn_exit_Click"
       ToolBar.OverflowMode="AsNeeded">
                             <materialDesign:PackIcon Kind="Power"  />

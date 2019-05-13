@@ -36,7 +36,9 @@ namespace WcfService
         {
             using (DailyPlannerDB dailyPlanner = new DailyPlannerDB())
             {
+                task.Group = dailyPlanner.Groups.SingleOrDefault(g => g.Id == task.Group.Id) ?? new Group { Name = task.Group.Name };
                 dailyPlanner.Tasks.Add(task);
+
                 dailyPlanner.SaveChanges();
             }
         }
@@ -131,19 +133,21 @@ namespace WcfService
         }
 
 
-        public void UpdateTask(DailyTaskNotes task, string taskname)
+        public void UpdateTask(DailyTaskNotes task)
         {
             DailyPlannerDB dB = new DailyPlannerDB();
-            var temp = dB.Tasks.Where(u => u.Name == taskname).First();
+            var temp = dB.Tasks.SingleOrDefault(u => u.Id == task.Id);
             temp.Name = task.Name;
             temp.Description = task.Description;
             temp.Location = task.Location;
-            temp.Group = task.Group;
+
+            temp.Group = dB.Groups.SingleOrDefault(g=>g.Id==task.Group.Id)?? new Group { Name =task.Name };
+
             temp.StartDate = task.StartDate;
             temp.EndDate = task.EndDate;
             dB.SaveChanges();
         }
-
+    
         public DailyTaskNotes GetTaskByName(string taskname)
         {
             DailyPlannerDB dB = new DailyPlannerDB();
@@ -307,6 +311,12 @@ namespace WcfService
             }
 
 
+        }
+
+        public DailyTaskNotes GetDailyTaskById(DailyTaskNotes taskNotes)
+        {
+            DailyPlannerDB dB = new DailyPlannerDB();
+            return dB.Tasks.SingleOrDefault(f=>f.Id==taskNotes.Id);
         }
     }
 }

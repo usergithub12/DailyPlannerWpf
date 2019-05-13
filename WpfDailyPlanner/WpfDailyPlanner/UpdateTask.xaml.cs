@@ -21,16 +21,31 @@ namespace WpfDailyPlanner
     /// </summary>
     public partial class UpdateTask : Window
     {
+        public string updatetask { get; set; }
         public UpdateTask()
         {
             InitializeComponent();
+            Service1Client client = new Service1Client();
+
+            foreach (var item in client.GetGroups())
+            {
+                if (!item.IsDeleted)
+                {
+                    if (item.Name != null)
+                    {
+                        cb_group.Items.Add(item.Name.ToString());
+                    }
+                }
+            }
         }
 
         private void Btn_saveTask_Click(object sender, RoutedEventArgs e)
         {
 
             Service1Client client = new Service1Client();
-            var task = client.GetTaskByName(tb_taskname.Text);
+
+            var task = client.GetTaskByName(updatetask);
+
             task.Name = tb_taskname.Text;
             task.Description = tb_taskdescr.Text;
             task.Location = tb_location.Text;
@@ -38,10 +53,16 @@ namespace WpfDailyPlanner
             dateFormatProvider.ShortDatePattern = "dd/MM/yyyy";
             task.StartDate = DateTime.Parse(dp_start.Text + " " + Convert.ToDateTime(tp_start.Text).ToLongTimeString(), dateFormatProvider);
             task.EndDate = DateTime.Parse(dp_end.Text + " " + Convert.ToDateTime(tp_end.Text).ToLongTimeString(), dateFormatProvider);
-            task.Group = client.GetGroupbyName(cb_group.SelectedItem.ToString());
-            client.UpdateTask(task, tb_taskname.Text);
 
+            if (client.GetGroupbyName(cb_group.SelectedItem.ToString()) != null)
+            {
+                task.Group = client.GetGroupbyName(cb_group.SelectedItem.ToString());
+            }
          
+            client.UpdateTask(task);
+
+
+            this.Close();
         }
 
         private void Cb_group_SelectionChanged(object sender, SelectionChangedEventArgs e)

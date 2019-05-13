@@ -1097,16 +1097,22 @@ namespace WpfDailyPlanner.ServiceReference1 {
         System.Threading.Tasks.Task DeleteGroupByNameAsync(string groupname);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateTask", ReplyAction="http://tempuri.org/IService1/UpdateTaskResponse")]
-        void UpdateTask(WpfDailyPlanner.ServiceReference1.DailyTaskNotes task, string taskname);
+        void UpdateTask(WpfDailyPlanner.ServiceReference1.DailyTaskNotes task);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateTask", ReplyAction="http://tempuri.org/IService1/UpdateTaskResponse")]
-        System.Threading.Tasks.Task UpdateTaskAsync(WpfDailyPlanner.ServiceReference1.DailyTaskNotes task, string taskname);
+        System.Threading.Tasks.Task UpdateTaskAsync(WpfDailyPlanner.ServiceReference1.DailyTaskNotes task);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTaskByName", ReplyAction="http://tempuri.org/IService1/GetTaskByNameResponse")]
         WpfDailyPlanner.ServiceReference1.DailyTaskNotes GetTaskByName(string taskname);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTaskByName", ReplyAction="http://tempuri.org/IService1/GetTaskByNameResponse")]
         System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes> GetTaskByNameAsync(string taskname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDailyTaskById", ReplyAction="http://tempuri.org/IService1/GetDailyTaskByIdResponse")]
+        WpfDailyPlanner.ServiceReference1.DailyTaskNotes GetDailyTaskById(WpfDailyPlanner.ServiceReference1.DailyTaskNotes taskNotes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDailyTaskById", ReplyAction="http://tempuri.org/IService1/GetDailyTaskByIdResponse")]
+        System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes> GetDailyTaskByIdAsync(WpfDailyPlanner.ServiceReference1.DailyTaskNotes taskNotes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUserforValidation", ReplyAction="http://tempuri.org/IService1/GetUserforValidationResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(WpfDailyPlanner.ServiceReference1.EmailFormatExceptionFault), Action="http://tempuri.org/IService1/GetUserforValidationEmailFormatExceptionFaultFault", Name="EmailFormatExceptionFault", Namespace="http://schemas.datacontract.org/2004/07/WcfService.ExceptionsFault")]
@@ -1257,12 +1263,12 @@ namespace WpfDailyPlanner.ServiceReference1 {
             return base.Channel.DeleteGroupByNameAsync(groupname);
         }
         
-        public void UpdateTask(WpfDailyPlanner.ServiceReference1.DailyTaskNotes task, string taskname) {
-            base.Channel.UpdateTask(task, taskname);
+        public void UpdateTask(WpfDailyPlanner.ServiceReference1.DailyTaskNotes task) {
+            base.Channel.UpdateTask(task);
         }
         
-        public System.Threading.Tasks.Task UpdateTaskAsync(WpfDailyPlanner.ServiceReference1.DailyTaskNotes task, string taskname) {
-            return base.Channel.UpdateTaskAsync(task, taskname);
+        public System.Threading.Tasks.Task UpdateTaskAsync(WpfDailyPlanner.ServiceReference1.DailyTaskNotes task) {
+            return base.Channel.UpdateTaskAsync(task);
         }
         
         public WpfDailyPlanner.ServiceReference1.DailyTaskNotes GetTaskByName(string taskname) {
@@ -1271,6 +1277,14 @@ namespace WpfDailyPlanner.ServiceReference1 {
         
         public System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes> GetTaskByNameAsync(string taskname) {
             return base.Channel.GetTaskByNameAsync(taskname);
+        }
+        
+        public WpfDailyPlanner.ServiceReference1.DailyTaskNotes GetDailyTaskById(WpfDailyPlanner.ServiceReference1.DailyTaskNotes taskNotes) {
+            return base.Channel.GetDailyTaskById(taskNotes);
+        }
+        
+        public System.Threading.Tasks.Task<WpfDailyPlanner.ServiceReference1.DailyTaskNotes> GetDailyTaskByIdAsync(WpfDailyPlanner.ServiceReference1.DailyTaskNotes taskNotes) {
+            return base.Channel.GetDailyTaskByIdAsync(taskNotes);
         }
         
         public void GetUserforValidation(WpfDailyPlanner.ServiceReference1.User user) {

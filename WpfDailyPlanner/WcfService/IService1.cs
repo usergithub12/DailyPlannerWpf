@@ -38,9 +38,11 @@ namespace WcfService
         [OperationContract]
         void DeleteGroupByName(string groupname);
         [OperationContract]
-        void UpdateTask(DailyTaskNotes task, string taskname);
+        void UpdateTask(DailyTaskNotes task);
         [OperationContract]
         DailyTaskNotes GetTaskByName(string taskname);
+        [OperationContract]
+        DailyTaskNotes GetDailyTaskById(DailyTaskNotes taskNotes);
 
         [OperationContract]
         [FaultContract(typeof(EmailFormatExceptionFault))]

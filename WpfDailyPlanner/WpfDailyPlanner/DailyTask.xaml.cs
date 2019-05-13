@@ -217,6 +217,7 @@ namespace WpfDailyPlanner
             UpdateTask updateTask = new UpdateTask();
             var cb = lb_showtasks.SelectedValue as CheckBox;
             updateTask.tb_taskname.Text = cb.Content.ToString();
+            updateTask.updatetask= cb.Content.ToString();
             updateTask.ShowDialog();
         }
     }
