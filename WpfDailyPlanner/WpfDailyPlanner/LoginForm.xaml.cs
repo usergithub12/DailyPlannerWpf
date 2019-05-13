@@ -27,11 +27,14 @@ namespace WpfDailyPlanner
         }
         private void Btn_sign_in_Click(object sender, RoutedEventArgs e)
         {
+          
             try
             {
                 Service1Client client = new Service1Client();
-                var u = client.GetUserbyName(tb_login.Text);
-
+               
+                 var  u = client.GetUserbyName(tb_login.Text);
+                
+              
                 DailyTask task = new DailyTask();
                 task.tb_username.Text = tb_login.Text;
                 task.tb_updatelogin.Text = tb_login.Text;
@@ -56,20 +59,20 @@ namespace WpfDailyPlanner
             }
             catch (FaultException fe)
             {
-                MessageBox.Show($"Halepa - {fe}");
+                MessageBox.Show($"Error - {fe}");
             }
             catch (NullReferenceException err)
             {
-                MessageBox.Show("Htos ne vudiluv pamjati");
+                MessageBox.Show("Null exception");
             }
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Useless block");
+            catch (Exception)
+            {
+                MessageBox.Show("Useless block");
 
-            //}
+            }
 
 
-          
+
         }
 
         private void Btn_sign_up_Click(object sender, RoutedEventArgs e)

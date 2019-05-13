@@ -81,11 +81,11 @@ namespace WpfDailyPlanner
 
             catch (FaultException fe)
             {
-                MessageBox.Show($"Halepa - {fe}");
+                MessageBox.Show($"Error - {fe}");
             }
             catch (NullReferenceException err)
             {
-                MessageBox.Show("Htos ne vudiluv pamjati");
+                MessageBox.Show("Null exception");
             }
             catch (Exception)
             {

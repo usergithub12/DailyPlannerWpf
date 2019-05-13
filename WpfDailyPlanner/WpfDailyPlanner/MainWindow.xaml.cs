@@ -29,7 +29,9 @@ namespace WpfDailyPlanner
         {
             LoginForm login = new LoginForm();
             login.Owner = this;
+         
             login.ShowDialog();
+            this.Close();
         }
     }
 }

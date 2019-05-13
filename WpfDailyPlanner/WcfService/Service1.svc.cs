@@ -77,7 +77,7 @@ namespace WcfService
         public User GetUserbyName(string login)
         {
             DailyPlannerDB dB = new DailyPlannerDB();
-            return dB.Users.Where(u => u.Login == login).FirstOrDefault();
+            return dB.Users.FirstOrDefault(u => u.Login == login);
         }
 
         public void UpdateUser(User user, string login)
