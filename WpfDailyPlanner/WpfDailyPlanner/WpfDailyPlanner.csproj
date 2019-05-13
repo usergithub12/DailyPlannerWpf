@@ -83,6 +83,9 @@
     <Compile Include="UpdateTask.xaml.cs">
       <DependentUpon>UpdateTask.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewTasks.xaml.cs">
+      <DependentUpon>ViewTasks.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UpdateTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewTasks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

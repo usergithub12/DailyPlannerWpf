@@ -196,17 +196,8 @@
                 <Calendar  Margin="0" Padding="0" SelectedDatesChanged="Cl_datepick_SelectedDatesChanged" Name="cl_datepick" Language="uk"  />
                 </StackPanel>
 
-                <ListBox MouseDoubleClick="Lb_showtasks_MouseDoubleClick" Background="{DynamicResource SecondaryAccentForegroundBrush}" Foreground="White" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="lb_showtasks" Visibility="Collapsed"></ListBox>
-               
-<!--<materialDesign:Card Grid.Row="2" Grid.Column="1" 
-  Background="{DynamicResource PrimaryHueDarkBrush}"
-  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-  Padding="8">
-                    <StackPanel Name="st_notes" >
-                        <materialDesign:PackIcon Kind="Bookmark"></materialDesign:PackIcon>
-                    </StackPanel>
-                </materialDesign:Card>-->
-
+                <ListBox MouseDoubleClick="Lb_showtasks_MouseDoubleClick" Background="{DynamicResource SecondaryAccentBrush}" Foreground="White" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="lb_showtasks" Visibility="Collapsed"></ListBox>
+    
                 <ToolBarTray  Grid.Column="0" Grid.ColumnSpan="2" >
                     <ToolBar 
     Style="{DynamicResource MaterialDesignToolBar}"
@@ -218,6 +209,7 @@
       ToolBar.OverflowMode="AsNeeded">
                             <materialDesign:PackIcon Kind="AccountBox" />
                         </Button>
+                        <Separator />
                         <Button
       ToolTip="Add task"
       Click="Btn_add_Click">
@@ -241,10 +233,18 @@
                         </Button>
                         <Separator />
                         <Button  
+      ToolTip="View Tasks" Name="btn_viewtasks" Click="Btn_viewtasks_Click"
+      ToolBar.OverflowMode="AsNeeded">
+                            <materialDesign:PackIcon Kind="ViewList" />
+                        </Button>
+                        <Separator />
+                        <Button  
       ToolTip="Exit" Name="btn_exit" Click="Btn_exit_Click"
       ToolBar.OverflowMode="AsNeeded">
                             <materialDesign:PackIcon Kind="Power"  />
                         </Button>
+                       
+                      
                     </ToolBar>
                 </ToolBarTray>
             </Grid>

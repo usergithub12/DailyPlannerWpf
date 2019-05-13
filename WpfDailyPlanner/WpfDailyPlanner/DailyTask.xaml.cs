@@ -78,47 +78,7 @@ namespace WpfDailyPlanner
 
         private void Cb_group_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //st_notes.Children.Clear();
-            //if (cb_group.SelectedIndex != -1)
-            //{
-            //    TextBlock textBlock = new TextBlock();
-            //    textBlock.Text = "Task List";
-            //    textBlock.FontSize = 16;
-            //    textBlock.FontWeight = FontWeights.Bold;
-            //    Thickness margin = new Thickness();
-            //    margin.Left = 16;
-            //    margin.Top = 16;
-            //    margin.Right = 12;
-            //    margin.Bottom = 8;
-            //    textBlock.Margin = margin;
-
-            //    st_notes.Children.Add(textBlock);
-
-
-            //    if (!String.IsNullOrEmpty(cb_group.Text))
-            //    {
-            //        Service1Client client = new Service1Client();
-            //        Thickness margincb = new Thickness();
-
-            //        margincb.Left = 16;
-            //        margincb.Top = 4;
-            //        margincb.Right = 16;
-            //        margincb.Bottom = 0;
-            //        foreach (var item in client.GetTasksFromGroup(cb_group.SelectedItem.ToString()))
-            //        {
-            //            if (!item.IsDeleted)
-            //            {
-            //                CheckBox checkBox = new CheckBox();
-
-            //                checkBox.Margin = margincb;
-
-            //                checkBox.Content = item.Name;
-            //                st_notes.Children.Add(checkBox);
-            //            }
-            //        }
-            //    }
-
-            //}
+            
         }
 
         private void Btn_addgroup_Click(object sender, RoutedEventArgs e)
@@ -217,8 +177,14 @@ namespace WpfDailyPlanner
             UpdateTask updateTask = new UpdateTask();
             var cb = lb_showtasks.SelectedValue as CheckBox;
             updateTask.tb_taskname.Text = cb.Content.ToString();
-            updateTask.updatetask= cb.Content.ToString();
+            updateTask.updatetask = cb.Content.ToString();
             updateTask.ShowDialog();
+        }
+
+        private void Btn_viewtasks_Click(object sender, RoutedEventArgs e)
+        {
+            ViewTasks view = new ViewTasks();
+            view.ShowDialog();
         }
     }
 }

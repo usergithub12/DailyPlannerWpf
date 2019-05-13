@@ -29,7 +29,7 @@ namespace WcfService
         {
             DailyPlannerDB dB = new DailyPlannerDB();
             dB.Configuration.ProxyCreationEnabled = false;
-            return dB.Tasks.ToArray();
+            return dB.Tasks.Include(g=>g.Group).ToArray();
         }
 
         public void GetTaskToAdd(DailyTaskNotes task)

@@ -41,12 +41,16 @@ namespace WpfDailyPlanner
             {
                 if (!String.IsNullOrEmpty(cb_group.Text))
                 {
-                   
                     Service1Client client = new Service1Client();
                     foreach (var item in client.GetTasksFromGroup(cb_group.SelectedItem.ToString()))
                     {
                         if (!item.IsDeleted)
                         {
+                            if(client.GetTasksFromGroup(cb_group.SelectedItem.ToString()).Count()>0)
+                            {
+                                lb_tasks.Visibility = Visibility.Visible;
+                            
+                            }
                             lb_tasks.Items.Add(item.Name);
                         }
                     }
