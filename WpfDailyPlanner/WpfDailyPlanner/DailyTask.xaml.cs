@@ -62,6 +62,11 @@ namespace WpfDailyPlanner
                     dailyTask.Group = service1Client.GetGroupbyName(cb_group.Text);
                 }
             }
+            else
+            {
+                 service1Client.GetGroupToAdd(new Group { Name = cb_group.Text });
+                dailyTask.Group = service1Client.GetGroupbyName(cb_group.Text);
+            }
             service1Client.GetTaskToAdd(dailyTask);
         }
 
