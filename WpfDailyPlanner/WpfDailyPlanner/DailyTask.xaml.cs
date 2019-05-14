@@ -1,4 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -112,6 +113,7 @@ namespace WpfDailyPlanner
             user.Telephone = tb_updatephone.Text;
             user.PasswordConfirmation = tb_updatepassword.Text;
             user.Email = tb_updateEmail.Text;
+            user.PhotoPath = tb_photopath.Text;
             client.UpdateUser(user, tb_username.Text);
             tb_username.Text = tb_updatelogin.Text;
         }
@@ -185,6 +187,17 @@ namespace WpfDailyPlanner
         {
             ViewTasks view = new ViewTasks();
             view.ShowDialog();
+        }
+
+        private void Btn_openFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+            file.ShowDialog();
+            tb_photopath.Text = file.FileName;
+            if (!String.IsNullOrEmpty(tb_photopath.Text))
+            {
+                user_img.ImageSource = new BitmapImage(new Uri(tb_photopath.Text));
+            }
         }
     }
 }

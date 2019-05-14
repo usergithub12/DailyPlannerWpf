@@ -39,7 +39,7 @@
             </StackPanel>
         </GroupBox>
       
-        <ListBox Visibility="Collapsed" Background="{StaticResource PrimaryHueMidBrush}" Grid.Column="1"  Grid.RowSpan="2" Name="lb_tasks" SelectionChanged="Lb_tasks_SelectionChanged"></ListBox>
+        <ListBox Visibility="Collapsed" Background="{StaticResource PrimaryHueLightBrush}" Grid.Column="1"  Grid.RowSpan="2" Name="lb_tasks" SelectionChanged="Lb_tasks_SelectionChanged"></ListBox>
         <Button  Grid.Row="2"   Name="btn_confirm" Click="Btn_confirm_Click" >Confirm</Button>
       
     </Grid>

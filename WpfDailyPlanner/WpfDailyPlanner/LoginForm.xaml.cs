@@ -39,6 +39,7 @@ namespace WpfDailyPlanner
                 task.tb_username.Text = tb_login.Text;
                 task.tb_updatelogin.Text = tb_login.Text;
                 task.tb_updatepassword.Text = tb_password.Password;
+            
                 if (!String.IsNullOrEmpty(u.PhotoPath))
                 {
                     task.user_img.ImageSource = new BitmapImage(new Uri(u.PhotoPath));
