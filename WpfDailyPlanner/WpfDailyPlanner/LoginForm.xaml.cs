@@ -68,7 +68,7 @@ namespace WpfDailyPlanner
             }
             catch (Exception)
             {
-                MessageBox.Show("Useless block");
+                MessageBox.Show("Error");
 
             }
 
